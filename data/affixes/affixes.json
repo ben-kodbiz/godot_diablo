@@ -1,15 +1,167 @@
 {
-  "str_flat": { "id": "str_flat", "stat": "str", "min_value": 1, "max_value": 20, "is_percent": false, "allowed_slots": ["weapon", "armor"], "prefix": "Brutal", "suffix": "of Strength" },
-  "dex_flat": { "id": "dex_flat", "stat": "dex", "min_value": 1, "max_value": 20, "is_percent": false, "allowed_slots": ["weapon", "armor"], "prefix": "Swift", "suffix": "of Precision" },
-  "int_flat": { "id": "int_flat", "stat": "int", "min_value": 1, "max_value": 20, "is_percent": false, "allowed_slots": ["weapon", "armor"], "prefix": "Arcane", "suffix": "of Wisdom" },
-  "vit_flat": { "id": "vit_flat", "stat": "vit", "min_value": 1, "max_value": 20, "is_percent": false, "allowed_slots": ["weapon", "armor"], "prefix": "Sturdy", "suffix": "of Vitality" },
-  "attack_speed_pct": { "id": "attack_speed_pct", "stat": "attack_speed", "min_value": 1, "max_value": 8, "is_percent": true, "allowed_slots": ["weapon"], "prefix": "Frenzied", "suffix": "of Haste" },
-  "critical_chance_pct": { "id": "critical_chance_pct", "stat": "critical_chance", "min_value": 1, "max_value": 5, "is_percent": true, "allowed_slots": ["weapon"], "prefix": "Keen", "suffix": "of Piercing" },
-  "armor_flat": { "id": "armor_flat", "stat": "armor", "min_value": 1, "max_value": 15, "is_percent": false, "allowed_slots": ["armor"], "prefix": "Ironclad", "suffix": "of the Wall" },
-  "health_flat": { "id": "health_flat", "stat": "health", "min_value": 5, "max_value": 60, "is_percent": false, "allowed_slots": ["armor", "accessory"], "prefix": "Hearty", "suffix": "of the Bear" },
-  "luck_flat": { "id": "luck_flat", "stat": "luck", "min_value": 1, "max_value": 12, "is_percent": false, "allowed_slots": ["accessory"], "prefix": "Lucky", "suffix": "of Fortune" },
-  "mana_flat": { "id": "mana_flat", "stat": "mana", "min_value": 5, "max_value": 40, "is_percent": false, "allowed_slots": ["weapon", "accessory"], "prefix": "Flowing", "suffix": "of Mana" },
-  "critical_damage_pct": { "id": "critical_damage_pct", "stat": "critical_damage", "min_value": 2, "max_value": 15, "is_percent": true, "allowed_slots": ["weapon", "accessory"], "prefix": "Savage", "suffix": "of Ruin" },
-  "move_speed_pct": { "id": "move_speed_pct", "stat": "move_speed", "min_value": 1, "max_value": 5, "is_percent": true, "allowed_slots": ["accessory"], "prefix": "Zephyr", "suffix": "of the Wind" },
-  "skill_power_flat": { "id": "skill_power_flat", "stat": "skill_power", "min_value": 2, "max_value": 25, "is_percent": false, "allowed_slots": ["weapon", "accessory"], "prefix": "Potent", "suffix": "of Spells" }
+  "_schema_version": 1,
+  "str_flat": {
+    "id": "str_flat",
+    "stat": "str",
+    "min_value": 1,
+    "max_value": 20,
+    "is_percent": false,
+    "allowed_slots": [
+      "weapon",
+      "armor"
+    ],
+    "prefix": "Brutal",
+    "suffix": "of Strength"
+  },
+  "dex_flat": {
+    "id": "dex_flat",
+    "stat": "dex",
+    "min_value": 1,
+    "max_value": 20,
+    "is_percent": false,
+    "allowed_slots": [
+      "weapon",
+      "armor"
+    ],
+    "prefix": "Swift",
+    "suffix": "of Precision"
+  },
+  "int_flat": {
+    "id": "int_flat",
+    "stat": "int",
+    "min_value": 1,
+    "max_value": 20,
+    "is_percent": false,
+    "allowed_slots": [
+      "weapon",
+      "armor"
+    ],
+    "prefix": "Arcane",
+    "suffix": "of Wisdom"
+  },
+  "vit_flat": {
+    "id": "vit_flat",
+    "stat": "vit",
+    "min_value": 1,
+    "max_value": 20,
+    "is_percent": false,
+    "allowed_slots": [
+      "weapon",
+      "armor"
+    ],
+    "prefix": "Sturdy",
+    "suffix": "of Vitality"
+  },
+  "attack_speed_pct": {
+    "id": "attack_speed_pct",
+    "stat": "attack_speed",
+    "min_value": 1,
+    "max_value": 8,
+    "is_percent": true,
+    "allowed_slots": [
+      "weapon"
+    ],
+    "prefix": "Frenzied",
+    "suffix": "of Haste"
+  },
+  "critical_chance_pct": {
+    "id": "critical_chance_pct",
+    "stat": "critical_chance",
+    "min_value": 1,
+    "max_value": 5,
+    "is_percent": true,
+    "allowed_slots": [
+      "weapon"
+    ],
+    "prefix": "Keen",
+    "suffix": "of Piercing"
+  },
+  "armor_flat": {
+    "id": "armor_flat",
+    "stat": "armor",
+    "min_value": 1,
+    "max_value": 15,
+    "is_percent": false,
+    "allowed_slots": [
+      "armor"
+    ],
+    "prefix": "Ironclad",
+    "suffix": "of the Wall"
+  },
+  "health_flat": {
+    "id": "health_flat",
+    "stat": "health",
+    "min_value": 5,
+    "max_value": 60,
+    "is_percent": false,
+    "allowed_slots": [
+      "armor",
+      "accessory"
+    ],
+    "prefix": "Hearty",
+    "suffix": "of the Bear"
+  },
+  "luck_flat": {
+    "id": "luck_flat",
+    "stat": "luck",
+    "min_value": 1,
+    "max_value": 12,
+    "is_percent": false,
+    "allowed_slots": [
+      "accessory"
+    ],
+    "prefix": "Lucky",
+    "suffix": "of Fortune"
+  },
+  "mana_flat": {
+    "id": "mana_flat",
+    "stat": "mana",
+    "min_value": 5,
+    "max_value": 40,
+    "is_percent": false,
+    "allowed_slots": [
+      "weapon",
+      "accessory"
+    ],
+    "prefix": "Flowing",
+    "suffix": "of Mana"
+  },
+  "critical_damage_pct": {
+    "id": "critical_damage_pct",
+    "stat": "critical_damage",
+    "min_value": 2,
+    "max_value": 15,
+    "is_percent": true,
+    "allowed_slots": [
+      "weapon",
+      "accessory"
+    ],
+    "prefix": "Savage",
+    "suffix": "of Ruin"
+  },
+  "move_speed_pct": {
+    "id": "move_speed_pct",
+    "stat": "move_speed",
+    "min_value": 1,
+    "max_value": 5,
+    "is_percent": true,
+    "allowed_slots": [
+      "accessory"
+    ],
+    "prefix": "Zephyr",
+    "suffix": "of the Wind"
+  },
+  "skill_power_flat": {
+    "id": "skill_power_flat",
+    "stat": "skill_power",
+    "min_value": 2,
+    "max_value": 25,
+    "is_percent": false,
+    "allowed_slots": [
+      "weapon",
+      "accessory"
+    ],
+    "prefix": "Potent",
+    "suffix": "of Spells"
+  }
 }

@@ -20,6 +20,7 @@ const PATHS := {
 	"pet_balance": "res://data/balance/pets.json",
 	"player_balance": "res://data/balance/player.json",
 	"skill_balance": "res://data/balance/skills.json",
+	"inventory_balance": "res://data/balance/inventory.json",
 	"pets": "res://data/pets/pets.json",
 	"species": "res://data/pets/species.json",
 	"skills": "res://data/skills/skills.json",
@@ -27,6 +28,7 @@ const PATHS := {
 	"enemies": "res://data/enemies/enemies.json",
 	"maps": "res://data/maps/maps.json",
 	"drops": "res://data/drops/enemy_drops.json",
+	"loot_tables": "res://data/drops/loot_tables.json",
 }
 
 ## Required fields per entry. Content files are JSON objects: { "<id>": {...} }.
@@ -41,6 +43,7 @@ const REQUIRED := {
 	"pet_balance": [],
 	"player_balance": [],
 	"skill_balance": [],
+	"inventory_balance": [],
 	"pets": ["id", "rarity", "bonuses"],
 	"species": ["id", "name", "wild_pool", "rarity_weights"],
 	"skills": ["id", "name", "family", "unlock_level"],
@@ -48,11 +51,14 @@ const REQUIRED := {
 	"enemies": ["id", "tier", "health", "damage"],
 	"maps": ["id", "biome"],
 	"drops": [],
+	"loot_tables": ["id"],
 }
 
 ## Tables below this line are only required once their stage lands; missing
 ## files warn instead of erroring so Stage 0/1 boots before pets/maps exist.
 const OPTIONAL_TABLES := ["pets", "enemies", "maps"]
+
+const SUPPORTED_SCHEMA_VERSION := 1
 
 var _tables: Dictionary = {}
 var _errors: Array[String] = []
@@ -142,6 +148,23 @@ func _get_entry(table: String, id: String) -> Dictionary:
 	return (entries[id] as Dictionary).duplicate(true)
 
 
+## Schema versions (fixme.md §4-5): every content file carries
+## `_schema_version`. Missing → warning + assume v1; unsupported → hard error
+## so format changes never silently break content. Migrations (v1→v2…)
+## will live in a future DataMigration; until then v1 is the only contract.
+func _check_schema_version(table: String, path: String, parsed: Dictionary) -> bool:
+	var ver: int = int(parsed.get("_schema_version", 0))
+	if ver == 0:
+		push_warning("DATA WARNING: %s has no _schema_version, assuming v1." % path)
+		return true
+	if ver != SUPPORTED_SCHEMA_VERSION:
+		var msg := "DATA ERROR: %s schema v%d unsupported (this build reads v%d)." % [path, ver, SUPPORTED_SCHEMA_VERSION]
+		_errors.append(msg)
+		push_error(msg)
+		return false
+	return true
+
+
 func _missing_file_only(table: String) -> bool:
 	for e in _errors:
 		if not e.begins_with("DATA ERROR: %s" % PATHS[table]):
@@ -171,8 +194,16 @@ func _load_table(table: String) -> bool:
 		push_error(msg)
 		_tables[table] = {}
 		return false
-	var ok := true
+	if not _check_schema_version(table, path, parsed):
+		_tables[table] = {}
+		return false
+	var clean := {}
 	for entry_id in parsed.keys():
+		if str(entry_id).begins_with("_"):
+			continue # schema metadata, not content (see docs/DATA_SCHEMA.md).
+		clean[entry_id] = parsed[entry_id]
+	var ok := true
+	for entry_id in clean.keys():
 		var entry: Variant = parsed[entry_id]
 		if typeof(entry) != TYPE_DICTIONARY:
 			var msg := "DATA ERROR: %s entry '%s' must be a JSON object" % [path, entry_id]
@@ -186,5 +217,5 @@ func _load_table(table: String) -> bool:
 				_errors.append(msg)
 				push_error(msg)
 				ok = false
-	_tables[table] = parsed
+	_tables[table] = clean
 	return ok

@@ -1,62 +1,126 @@
 {
+  "_schema_version": 1,
   "forest_egg": {
-    "id": "forest_egg", "name": "Forest Egg",
-    "hatch_time_hours": 2, "min_map_level": 1,
+    "id": "forest_egg",
+    "name": "Forest Egg",
+    "hatch_time_hours": 2,
+    "min_map_level": 1,
     "possible_pets": [
-      { "pet": "green_slime", "weight": 60 },
-      { "pet": "forest_wolf", "weight": 40 }
+      {
+        "pet": "green_slime",
+        "weight": 60
+      },
+      {
+        "pet": "forest_wolf",
+        "weight": 40
+      }
     ],
     "wild_rolls": []
   },
   "burrow_egg": {
-    "id": "burrow_egg", "name": "Burrow Egg",
-    "hatch_time_hours": 4, "min_map_level": 3,
+    "id": "burrow_egg",
+    "name": "Burrow Egg",
+    "hatch_time_hours": 4,
+    "min_map_level": 3,
     "possible_pets": [],
     "wild_rolls": [
-      { "species": "thorn_bunny", "weight": 50 },
-      { "species": "cave_bat", "weight": 50 }
+      {
+        "species": "thorn_bunny",
+        "weight": 50
+      },
+      {
+        "species": "cave_bat",
+        "weight": 50
+      }
     ]
   },
   "mossy_egg": {
-    "id": "mossy_egg", "name": "Mossy Egg",
-    "hatch_time_hours": 8, "min_map_level": 5,
+    "id": "mossy_egg",
+    "name": "Mossy Egg",
+    "hatch_time_hours": 8,
+    "min_map_level": 5,
     "possible_pets": [
-      { "pet": "stone_turtle", "weight": 30 },
-      { "pet": "mage_cat", "weight": 30 },
-      { "pet": "forest_wolf", "weight": 10 }
+      {
+        "pet": "stone_turtle",
+        "weight": 30
+      },
+      {
+        "pet": "mage_cat",
+        "weight": 30
+      },
+      {
+        "pet": "forest_wolf",
+        "weight": 10
+      }
     ],
     "wild_rolls": [
-      { "species": "ember_fox", "weight": 15 },
-      { "species": "gloom_owl", "weight": 15 }
+      {
+        "species": "ember_fox",
+        "weight": 15
+      },
+      {
+        "species": "gloom_owl",
+        "weight": 15
+      }
     ]
   },
   "sky_egg": {
-    "id": "sky_egg", "name": "Sky Egg",
-    "hatch_time_hours": 24, "min_map_level": 12,
+    "id": "sky_egg",
+    "name": "Sky Egg",
+    "hatch_time_hours": 24,
+    "min_map_level": 12,
     "possible_pets": [
-      { "pet": "sky_unicorn", "weight": 70 },
-      { "pet": "mage_cat", "weight": 20 },
-      { "pet": "stone_turtle", "weight": 10 }
+      {
+        "pet": "sky_unicorn",
+        "weight": 70
+      },
+      {
+        "pet": "mage_cat",
+        "weight": 20
+      },
+      {
+        "pet": "stone_turtle",
+        "weight": 10
+      }
     ],
     "wild_rolls": []
   },
   "storm_egg": {
-    "id": "storm_egg", "name": "Storm Egg",
-    "hatch_time_hours": 30, "min_map_level": 14,
+    "id": "storm_egg",
+    "name": "Storm Egg",
+    "hatch_time_hours": 30,
+    "min_map_level": 14,
     "possible_pets": [
-      { "pet": "sky_unicorn", "weight": 15 }
+      {
+        "pet": "sky_unicorn",
+        "weight": 15
+      }
     ],
     "wild_rolls": [
-      { "species": "storm_eagle", "weight": 45 },
-      { "species": "frost_lynx", "weight": 40 }
+      {
+        "species": "storm_eagle",
+        "weight": 45
+      },
+      {
+        "species": "frost_lynx",
+        "weight": 40
+      }
     ]
   },
   "dragon_egg": {
-    "id": "dragon_egg", "name": "Dragon Egg",
-    "hatch_time_hours": 48, "min_map_level": 18,
+    "id": "dragon_egg",
+    "name": "Dragon Egg",
+    "hatch_time_hours": 48,
+    "min_map_level": 18,
     "possible_pets": [
-      { "pet": "ember_dragon", "weight": 80 },
-      { "pet": "sky_unicorn", "weight": 20 }
+      {
+        "pet": "ember_dragon",
+        "weight": 80
+      },
+      {
+        "pet": "sky_unicorn",
+        "weight": 20
+      }
     ],
     "wild_rolls": []
   }

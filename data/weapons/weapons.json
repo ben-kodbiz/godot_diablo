@@ -1,38 +1,59 @@
 {
+  "_schema_version": 1,
   "bow": {
     "id": "bow",
     "name": "Bow",
     "family": "ranged",
     "primary_stat": "dex",
-    "secondary_stats": ["attack_speed", "critical_chance"],
+    "secondary_stats": [
+      "attack_speed",
+      "critical_chance"
+    ],
     "talent_tree": "bow",
-    "slots": ["main_hand"]
+    "slots": [
+      "main_hand"
+    ]
   },
   "staff": {
     "id": "staff",
     "name": "Staff",
     "family": "magic",
     "primary_stat": "int",
-    "secondary_stats": ["mana", "skill_power"],
+    "secondary_stats": [
+      "mana",
+      "skill_power"
+    ],
     "talent_tree": "staff",
-    "slots": ["main_hand"]
+    "slots": [
+      "main_hand"
+    ]
   },
   "sword": {
     "id": "sword",
     "name": "Sword",
     "family": "melee",
     "primary_stat": "str",
-    "secondary_stats": ["attack_speed", "physical_damage"],
+    "secondary_stats": [
+      "attack_speed",
+      "physical_damage"
+    ],
     "talent_tree": "sword",
-    "slots": ["main_hand"]
+    "slots": [
+      "main_hand"
+    ]
   },
   "shield": {
     "id": "shield",
     "name": "Shield",
     "family": "defensive",
     "primary_stat": "vit",
-    "secondary_stats": ["armor", "block"],
+    "secondary_stats": [
+      "armor",
+      "block"
+    ],
     "talent_tree": "shield",
-    "slots": ["off_hand"]
+    "slots": [
+      "off_hand"
+    ]
   }
 }

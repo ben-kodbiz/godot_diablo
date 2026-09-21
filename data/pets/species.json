@@ -1,56 +1,172 @@
 {
+  "_schema_version": 1,
   "thorn_bunny": {
-    "id": "thorn_bunny", "name": "Thorn Bunny", "egg_type": "burrow_egg",
-    "rarity_weights": { "common": 100 },
+    "id": "thorn_bunny",
+    "name": "Thorn Bunny",
+    "egg_type": "burrow_egg",
+    "rarity_weights": {
+      "common": 100
+    },
     "wild_pool": [
-      { "stat": "move_speed", "min": 1, "max": 4, "is_percent": true },
-      { "stat": "luck", "min": 1, "max": 6, "is_percent": false },
-      { "stat": "health", "min": 5, "max": 25, "is_percent": false }
+      {
+        "stat": "move_speed",
+        "min": 1,
+        "max": 4,
+        "is_percent": true
+      },
+      {
+        "stat": "luck",
+        "min": 1,
+        "max": 6,
+        "is_percent": false
+      },
+      {
+        "stat": "health",
+        "min": 5,
+        "max": 25,
+        "is_percent": false
+      }
     ]
   },
   "cave_bat": {
-    "id": "cave_bat", "name": "Cave Bat", "egg_type": "burrow_egg",
-    "rarity_weights": { "common": 100 },
+    "id": "cave_bat",
+    "name": "Cave Bat",
+    "egg_type": "burrow_egg",
+    "rarity_weights": {
+      "common": 100
+    },
     "wild_pool": [
-      { "stat": "critical_chance", "min": 1, "max": 3, "is_percent": true },
-      { "stat": "attack_speed", "min": 1, "max": 3, "is_percent": true },
-      { "stat": "dex", "min": 1, "max": 5, "is_percent": false }
+      {
+        "stat": "critical_chance",
+        "min": 1,
+        "max": 3,
+        "is_percent": true
+      },
+      {
+        "stat": "attack_speed",
+        "min": 1,
+        "max": 3,
+        "is_percent": true
+      },
+      {
+        "stat": "dex",
+        "min": 1,
+        "max": 5,
+        "is_percent": false
+      }
     ]
   },
   "ember_fox": {
-    "id": "ember_fox", "name": "Ember Fox", "egg_type": "mossy_egg",
-    "rarity_weights": { "rare": 75, "epic": 25 },
+    "id": "ember_fox",
+    "name": "Ember Fox",
+    "egg_type": "mossy_egg",
+    "rarity_weights": {
+      "rare": 75,
+      "epic": 25
+    },
     "wild_pool": [
-      { "stat": "damage", "min": 2, "max": 6, "is_percent": false },
-      { "stat": "critical_chance", "min": 1, "max": 4, "is_percent": true },
-      { "stat": "move_speed", "min": 2, "max": 5, "is_percent": true }
+      {
+        "stat": "damage",
+        "min": 2,
+        "max": 6,
+        "is_percent": false
+      },
+      {
+        "stat": "critical_chance",
+        "min": 1,
+        "max": 4,
+        "is_percent": true
+      },
+      {
+        "stat": "move_speed",
+        "min": 2,
+        "max": 5,
+        "is_percent": true
+      }
     ]
   },
   "gloom_owl": {
-    "id": "gloom_owl", "name": "Gloom Owl", "egg_type": "mossy_egg",
-    "rarity_weights": { "rare": 100 },
+    "id": "gloom_owl",
+    "name": "Gloom Owl",
+    "egg_type": "mossy_egg",
+    "rarity_weights": {
+      "rare": 100
+    },
     "wild_pool": [
-      { "stat": "critical_damage", "min": 2, "max": 8, "is_percent": true },
-      { "stat": "int", "min": 2, "max": 7, "is_percent": false },
-      { "stat": "mana", "min": 5, "max": 20, "is_percent": false }
+      {
+        "stat": "critical_damage",
+        "min": 2,
+        "max": 8,
+        "is_percent": true
+      },
+      {
+        "stat": "int",
+        "min": 2,
+        "max": 7,
+        "is_percent": false
+      },
+      {
+        "stat": "mana",
+        "min": 5,
+        "max": 20,
+        "is_percent": false
+      }
     ]
   },
   "storm_eagle": {
-    "id": "storm_eagle", "name": "Storm Eagle", "egg_type": "storm_egg",
-    "rarity_weights": { "epic": 100 },
+    "id": "storm_eagle",
+    "name": "Storm Eagle",
+    "egg_type": "storm_egg",
+    "rarity_weights": {
+      "epic": 100
+    },
     "wild_pool": [
-      { "stat": "attack_speed", "min": 3, "max": 8, "is_percent": true },
-      { "stat": "move_speed", "min": 3, "max": 7, "is_percent": true },
-      { "stat": "dex", "min": 4, "max": 10, "is_percent": false }
+      {
+        "stat": "attack_speed",
+        "min": 3,
+        "max": 8,
+        "is_percent": true
+      },
+      {
+        "stat": "move_speed",
+        "min": 3,
+        "max": 7,
+        "is_percent": true
+      },
+      {
+        "stat": "dex",
+        "min": 4,
+        "max": 10,
+        "is_percent": false
+      }
     ]
   },
   "frost_lynx": {
-    "id": "frost_lynx", "name": "Frost Lynx", "egg_type": "storm_egg",
-    "rarity_weights": { "epic": 100 },
+    "id": "frost_lynx",
+    "name": "Frost Lynx",
+    "egg_type": "storm_egg",
+    "rarity_weights": {
+      "epic": 100
+    },
     "wild_pool": [
-      { "stat": "damage", "min": 3, "max": 8, "is_percent": false },
-      { "stat": "critical_damage", "min": 3, "max": 10, "is_percent": true },
-      { "stat": "luck", "min": 3, "max": 9, "is_percent": false }
+      {
+        "stat": "damage",
+        "min": 3,
+        "max": 8,
+        "is_percent": false
+      },
+      {
+        "stat": "critical_damage",
+        "min": 3,
+        "max": 10,
+        "is_percent": true
+      },
+      {
+        "stat": "luck",
+        "min": 3,
+        "max": 9,
+        "is_percent": false
+      }
     ]
   }
 }

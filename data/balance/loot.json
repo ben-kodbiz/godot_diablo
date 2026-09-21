@@ -1,5 +1,8 @@
 {
-  "scaling": { "value_per_level": 0.08 },
+  "_schema_version": 1,
+  "scaling": {
+    "value_per_level": 0.08
+  },
   "rarity_multipliers": {
     "normal": 1.0,
     "uncommon": 1.1,

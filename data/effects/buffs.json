@@ -1,52 +1,139 @@
 {
+  "_schema_version": 1,
   "windwalk": {
-    "id": "windwalk", "name": "Windwalk",
+    "id": "windwalk",
+    "name": "Windwalk",
     "description": "Move like the wind.",
-    "modifiers": [{ "stat": "move_speed", "value": 10, "is_percent": true }],
-    "min_rarity": "epic", "allowed_slots": ["weapon", "armor", "accessory"]
+    "modifiers": [
+      {
+        "stat": "move_speed",
+        "value": 10,
+        "is_percent": true
+      }
+    ],
+    "min_rarity": "epic",
+    "allowed_slots": [
+      "weapon",
+      "armor",
+      "accessory"
+    ]
   },
   "titan_focus": {
-    "id": "titan_focus", "name": "Titan Focus",
+    "id": "titan_focus",
+    "name": "Titan Focus",
     "description": "Strength increased by 10%.",
-    "modifiers": [{ "stat": "str", "value": 10, "is_percent": true }],
-    "min_rarity": "epic", "allowed_slots": ["weapon", "armor", "accessory"]
+    "modifiers": [
+      {
+        "stat": "str",
+        "value": 10,
+        "is_percent": true
+      }
+    ],
+    "min_rarity": "epic",
+    "allowed_slots": [
+      "weapon",
+      "armor",
+      "accessory"
+    ]
   },
   "arcane_flow": {
-    "id": "arcane_flow", "name": "Arcane Flow",
+    "id": "arcane_flow",
+    "name": "Arcane Flow",
     "description": "Mana increased by 15%.",
-    "modifiers": [{ "stat": "mana", "value": 15, "is_percent": true }],
-    "min_rarity": "epic", "allowed_slots": ["weapon", "accessory"]
+    "modifiers": [
+      {
+        "stat": "mana",
+        "value": 15,
+        "is_percent": true
+      }
+    ],
+    "min_rarity": "epic",
+    "allowed_slots": [
+      "weapon",
+      "accessory"
+    ]
   },
   "swift_hands": {
-    "id": "swift_hands", "name": "Swift Hands",
+    "id": "swift_hands",
+    "name": "Swift Hands",
     "description": "Attack speed increased by 8%.",
-    "modifiers": [{ "stat": "attack_speed", "value": 8, "is_percent": true }],
-    "min_rarity": "epic", "allowed_slots": ["weapon"]
+    "modifiers": [
+      {
+        "stat": "attack_speed",
+        "value": 8,
+        "is_percent": true
+      }
+    ],
+    "min_rarity": "epic",
+    "allowed_slots": [
+      "weapon"
+    ]
   },
   "stoneskin": {
-    "id": "stoneskin", "name": "Stoneskin",
+    "id": "stoneskin",
+    "name": "Stoneskin",
     "description": "Armor increased by 15%.",
-    "modifiers": [{ "stat": "armor", "value": 15, "is_percent": true }],
-    "min_rarity": "epic", "allowed_slots": ["armor"]
+    "modifiers": [
+      {
+        "stat": "armor",
+        "value": 15,
+        "is_percent": true
+      }
+    ],
+    "min_rarity": "epic",
+    "allowed_slots": [
+      "armor"
+    ]
   },
   "fortunes_smile": {
-    "id": "fortunes_smile", "name": "Fortune's Smile",
+    "id": "fortunes_smile",
+    "name": "Fortune's Smile",
     "description": "Luck increased by 12%.",
-    "modifiers": [{ "stat": "luck", "value": 12, "is_percent": true }],
-    "min_rarity": "epic", "allowed_slots": ["accessory"]
+    "modifiers": [
+      {
+        "stat": "luck",
+        "value": 12,
+        "is_percent": true
+      }
+    ],
+    "min_rarity": "epic",
+    "allowed_slots": [
+      "accessory"
+    ]
   },
   "critical_edge": {
-    "id": "critical_edge", "name": "Critical Edge",
+    "id": "critical_edge",
+    "name": "Critical Edge",
     "description": "+4% critical chance.",
-    "modifiers": [{ "stat": "critical_chance", "value": 4, "is_percent": true }],
-    "min_rarity": "epic", "allowed_slots": ["weapon"]
+    "modifiers": [
+      {
+        "stat": "critical_chance",
+        "value": 4,
+        "is_percent": true
+      }
+    ],
+    "min_rarity": "epic",
+    "allowed_slots": [
+      "weapon"
+    ]
   },
   "moonpiercer_volley": {
-    "id": "moonpiercer_volley", "name": "Moonpiercer Volley",
+    "id": "moonpiercer_volley",
+    "name": "Moonpiercer Volley",
     "description": "Every fifth ranged attack fires a second projectile.",
     "modifiers": [],
-    "trigger": { "type": "every_nth_attack", "n": 5, "effect": "extra_projectile", "weapon_families": ["ranged"] },
+    "trigger": {
+      "type": "every_nth_attack",
+      "n": 5,
+      "effect": "extra_projectile",
+      "weapon_families": [
+        "ranged"
+      ]
+    },
     "grants_name": "Moonpiercer",
-    "min_rarity": "legendary", "allowed_slots": ["weapon"]
+    "min_rarity": "legendary",
+    "allowed_slots": [
+      "weapon"
+    ]
   }
 }

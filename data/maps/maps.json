@@ -1,29 +1,71 @@
 {
+  "_schema_version": 1,
   "forest_01": {
-    "id": "forest_01", "name": "Forest Edge", "biome": "forest",
-    "minimum_level": 1, "maximum_level": 10,
-    "room_count_min": 8, "room_count_max": 12,
-    "enemies": ["forest_slime", "forest_goblin"],
-    "elites": ["goblin_brute"],
+    "id": "forest_01",
+    "name": "Forest Edge",
+    "biome": "forest",
+    "minimum_level": 1,
+    "maximum_level": 10,
+    "room_count_min": 8,
+    "room_count_max": 12,
+    "enemies": [
+      "forest_slime",
+      "forest_goblin"
+    ],
+    "elites": [
+      "goblin_brute"
+    ],
     "boss": "",
-    "scaling": { "enabled": true, "player_level_offset_min": -2, "player_level_offset_max": 2 }
+    "scaling": {
+      "enabled": true,
+      "player_level_offset_min": -2,
+      "player_level_offset_max": 2
+    }
   },
   "forest_02": {
-    "id": "forest_02", "name": "Forest Depths", "biome": "forest",
-    "minimum_level": 8, "maximum_level": 18,
-    "room_count_min": 10, "room_count_max": 15,
-    "enemies": ["forest_goblin", "dire_wolf", "forest_slime"],
-    "elites": ["goblin_brute", "troll_shaman"],
+    "id": "forest_02",
+    "name": "Forest Depths",
+    "biome": "forest",
+    "minimum_level": 8,
+    "maximum_level": 18,
+    "room_count_min": 10,
+    "room_count_max": 15,
+    "enemies": [
+      "forest_goblin",
+      "dire_wolf",
+      "forest_slime"
+    ],
+    "elites": [
+      "goblin_brute",
+      "troll_shaman"
+    ],
     "boss": "",
-    "scaling": { "enabled": true, "player_level_offset_min": -2, "player_level_offset_max": 2 }
+    "scaling": {
+      "enabled": true,
+      "player_level_offset_min": -2,
+      "player_level_offset_max": 2
+    }
   },
   "forest_03": {
-    "id": "forest_03", "name": "Heart of the Forest", "biome": "forest",
-    "minimum_level": 15, "maximum_level": 25,
-    "room_count_min": 10, "room_count_max": 14,
-    "enemies": ["dire_wolf", "forest_goblin"],
-    "elites": ["troll_shaman"],
+    "id": "forest_03",
+    "name": "Heart of the Forest",
+    "biome": "forest",
+    "minimum_level": 15,
+    "maximum_level": 25,
+    "room_count_min": 10,
+    "room_count_max": 14,
+    "enemies": [
+      "dire_wolf",
+      "forest_goblin"
+    ],
+    "elites": [
+      "troll_shaman"
+    ],
     "boss": "forest_guardian",
-    "scaling": { "enabled": true, "player_level_offset_min": -2, "player_level_offset_max": 2 }
+    "scaling": {
+      "enabled": true,
+      "player_level_offset_min": -2,
+      "player_level_offset_max": 2
+    }
   }
 }

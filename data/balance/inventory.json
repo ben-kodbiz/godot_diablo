@@ -1,0 +1,5 @@
+{
+  "_schema_version": 1,
+  "grid": { "width": 10, "height": 6 },
+  "stacking": { "max_stack": 99 }
+}

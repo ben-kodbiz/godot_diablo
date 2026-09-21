@@ -25,7 +25,15 @@ implementing any system; do not invent architecture that contradicts it.
   (movement, XP/level + signal, HP, StatCalculator math).
   Skill check: `<godot> --headless --path . --script res://tests/skills/skill_check.gd -- --check`
   (tree: `--weapon=staff --level=10`; economy, upgrade math, level-20 cap).
-  Balance scheme lives in `docs/BALANCING.md`, not in code.
+  Data check: `<godot> --headless --path . --script res://tests/data/data_check.gd -- --check`
+  (semantic + cross-ref validation of ALL JSON + negative self-tests).
+  Run data check first after any content edit; full gate is
+  data → loot/pet/player/skill → boot.
+  Equipment check: `<godot> --headless --path . --script res://tests/equipment/equipment_check.gd`
+  (slots, requirements, two-handed, modifiers, save round-trip).
+  Inventory check: `<godot> --headless --path . --script res://tests/inventory/inventory_check.gd`
+  (capacity, move/swap, sort/filter, stacks, save round-trip).
+  Balance scheme lives in `docs/BALANCING.md`, schema in `docs/DATA_SCHEMA.md`, not in code.
 
 ## Build order (do not skip ahead)
 

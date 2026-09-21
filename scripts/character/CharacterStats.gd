@@ -5,6 +5,7 @@ extends Node
 ## source key, so nothing ever patches stats ad hoc (spec #29-30).
 
 const StatCalculator = preload("res://scripts/character/StatCalculator.gd")
+const StatModifier = preload("res://scripts/core/StatModifier.gd")
 
 var level := 1
 var xp := 0
@@ -53,8 +54,21 @@ func _num_dict(d: Variant) -> Dictionary:
 
 
 ## Replace ALL modifiers from one contributor (equipment, talents, …).
+## Mods follow the StatModifier contract; unstamped ones are grouped as
+## "unknown" with a warning instead of failing the game.
 func set_contributors(source: String, mods: Array) -> void:
-	_sources[source] = mods
+	var clean: Array = []
+	for m in mods:
+		var md := (m as Dictionary).duplicate()
+		if not StatModifier.is_valid(md):
+			push_warning("CharacterStats: source '%s' sent invalid modifier %s." % [source, str(m)])
+			continue
+		clean.append(md)
+	_sources[source] = clean
+
+
+func get_breakdown() -> Dictionary:
+	return StatCalculator.calculate_breakdown(_base, level, _per_level, all_contributors())
 
 
 func all_contributors() -> Array:

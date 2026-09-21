@@ -49,7 +49,10 @@ static func format_bonus(bonus: Dictionary) -> String:
 static func build(pet_def: Dictionary, egg_id: String, unique_id: String) -> Dictionary:
 	var bonuses: Array = []
 	for b in (pet_def.get("bonuses", []) as Array):
-		bonuses.append((b as Dictionary).duplicate())
+		var bd := (b as Dictionary).duplicate()
+		bd["source_type"] = "pet"
+		bd["source_id"] = str(pet_def.get("id", "?"))
+		bonuses.append(bd)
 	return {
 		"unique_id": unique_id,
 		"pet_id": str(pet_def.get("id", "?")),

@@ -11,6 +11,7 @@ extends RefCounted
 ## identically in-game, headless, and in the simulators.
 
 const ItemInstance = preload("res://scripts/loot/ItemInstance.gd")
+const LootContext = preload("res://scripts/loot/LootContext.gd")
 
 const RANKS := ["normal", "uncommon", "rare", "epic", "legendary"]
 
@@ -47,6 +48,16 @@ func generate_item(base_id: String, item_level: int, rarity_override: String = "
 	var item_id := ItemInstance.make_id(_rng)
 	var display_name := build_name(str(base.get("name", base_id)), affixes, buffs)
 	return ItemInstance.build(base, item_level, rarity_id, affixes, buffs, display_name, item_id)
+
+
+## Context entry point (fixme.md §16): level from enemy/map, rarity with luck,
+## optional seed for exact reproduction. Default context (luck 0, seed 0)
+## produces results identical to generate_item().
+func generate_item_ctx(base_id: String, ctx: Dictionary) -> Dictionary:
+	if int(ctx.get("seed", 0)) != 0:
+		_rng.set_seed(int(ctx["seed"]))
+	var rarity_id := roll_rarity(float(ctx.get("luck", 0.0)))
+	return generate_item(base_id, LootContext.item_level(ctx), rarity_id)
 
 
 ## Weighted rarity roll. `luck_bonus` shifts weight toward rarer tiers.

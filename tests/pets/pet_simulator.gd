@@ -19,6 +19,8 @@ func _init() -> void:
 	var rng: Node = RNGScript.new()
 	var data: Node = DataScript.new()
 	var seed_value := int(args.get("seed", 0))
+	if seed_value == 0 and bool(args.get("check", false)):
+		seed_value = 12345 # deterministic gate (fixme.md §14); override with --seed=N.
 	if seed_value == 0:
 		rng._rng.randomize()
 	else:

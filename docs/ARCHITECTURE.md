@@ -71,6 +71,54 @@ This file tracks what is actually built; update it whenever structure changes.
   data + economy + math + cap validation). No in-game panel yet — skill UI
   lands with the talent/UI stage.
 
+## Built (equipment domain — fixme.md TASK 11)
+
+- `scripts/equipment/EquipmentManager.gd` (`_init(data)`): 7 slots
+  (accessory→first-free pairing, pet reserved), `equip()` returning
+  `{ok, reason, displaced[]}` with symmetric footprint displacement,
+  `requirement_error()` (level + generic `requirements[]`), `to_modifiers()`
+  re-stamped `equipment:<uid>` (original stamp in `via`), `serialize()/
+  deserialize()` save contract. Player integration is a separate later step.
+- Items carry `base_stats` snapshot + `occupies` footprint from their base
+  (`ItemInstance`); the two-handed rule lives in equipment JSON, never in code.
+- Check: `tests/equipment/equipment_check.gd` (slots, requirements, 2H both
+  directions, accessories, pet guard, modifier math, save round-trip + corrupt).
+
+## Built (inventory domain — fixme.md TASK 10)
+
+- `scripts/inventory/InventoryManager.gd` (`_init(data, w=0, h=0)`): grid slots
+  (10×6 from `data/balance/inventory.json`), add (stack-merge then first-free,
+  duplicate-uid rejection), remove/contains/find/filter, move/swap, rarity sort,
+  `serialize()/deserialize()` with uid + capacity validation. Emits no EventBus
+  signals yet (event governance is a later stage). No UI — TASK 12.
+- Check: `tests/inventory/inventory_check.gd` (capacity, overflow, move/swap,
+  sort/filter, stacking, save round-trip + corrupt).
+
+## Built (hardening — fixme.md P0)
+- `scripts/core/DataValidator.gd`: semantic validation (types, enums, ranges,
+  key/id consistency, cross-file refs incl. tier-correct map placement).
+  Tool: `tests/data/data_check.gd -- --check` → `DATA CHECK: PASS`
+  (production tables + 9 synthetic negative self-tests). Contract: `docs/DATA_SCHEMA.md`.
+- Schema versions: every JSON carries `_schema_version: 1` (`_` keys are
+  metadata, stripped before caching). Missing → warning; otherwise unsupported
+  → hard error. v1 is the only contract; v2 needs a DataMigration module.
+- `scripts/core/StatModifier.gd`: the one modifier contract
+  `{stat, value, is_percent, source_type, source_id}`. Producers stamp at build
+  (loot `equipment:<base>`, buffs `buff:<id>`, pets `pet:<id>`); unstamped input
+  normalizes to `unknown` with a warning — no parallel formats, ever.
+- `StatCalculator.calculate_breakdown()` + `format_breakdown()` (BASE/Lvl/source
+  view; finals always equal `calculate()`), `CharacterStats.get_breakdown()`.
+- `scripts/loot/LootContext.gd`: one-dict roll context (levels, tier, luck,
+  seed…); `LootGenerator.generate_item_ctx()` wires luck + seed. Default context
+  reproduces `generate_item()` exactly.
+
+## Data contracts (fixme.md §6–7 — immutable)
+
+- Definition (JSON, what things CAN be) vs instance (owned objects) stays
+  absolute; runtime never mutates base definitions.
+- Every `DataManager` getter returns a deep duplicate. Callers may mutate
+  freely; bases stay clean. Keep this guarantee with a test, not just a comment.
+
 ## Dependency rules (enforced)
 
 Systems → managers/services → data. UI never feeds generators

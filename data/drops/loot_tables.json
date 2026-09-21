@@ -1,0 +1,18 @@
+{
+  "_schema_version": 1,
+  "forest_common": {
+    "id": "forest_common",
+    "description": "Standard drops from normal forest enemies.",
+    "enemy_tiers": ["normal"]
+  },
+  "forest_elite": {
+    "id": "forest_elite",
+    "description": "Improved drops from elite forest enemies.",
+    "enemy_tiers": ["elite"]
+  },
+  "forest_boss": {
+    "id": "forest_boss",
+    "description": "Guaranteed-strong drops from forest bosses.",
+    "enemy_tiers": ["boss"]
+  }
+}

@@ -1,16 +1,31 @@
 {
+  "_schema_version": 1,
   "tiers": {
     "normal": {
       "egg_chance": 0.5,
-      "egg_pool": { "forest_egg": 85, "burrow_egg": 15 }
+      "egg_pool": {
+        "forest_egg": 85,
+        "burrow_egg": 15
+      }
     },
     "elite": {
       "egg_chance": 5.0,
-      "egg_pool": { "forest_egg": 40, "mossy_egg": 30, "burrow_egg": 15, "sky_egg": 10, "storm_egg": 5 }
+      "egg_pool": {
+        "forest_egg": 40,
+        "mossy_egg": 30,
+        "burrow_egg": 15,
+        "sky_egg": 10,
+        "storm_egg": 5
+      }
     },
     "boss": {
       "egg_chance": 25.0,
-      "egg_pool": { "mossy_egg": 30, "sky_egg": 30, "storm_egg": 25, "dragon_egg": 15 }
+      "egg_pool": {
+        "mossy_egg": 30,
+        "sky_egg": 30,
+        "storm_egg": 25,
+        "dragon_egg": 15
+      }
     }
   }
 }

@@ -29,6 +29,8 @@ func _load() -> void:
 		return
 	_flags = _defaults()
 	for key in parsed.keys():
+		if str(key).begins_with("_"):
+			continue # schema metadata, not a flag.
 		_flags[key] = bool(parsed[key])
 
 

@@ -107,4 +107,19 @@ func _check_player(failures: Array) -> void:
 	# L2 vit 13 + 10 gear = 23 → 50 + 23*5 + 1*10 = 175.
 	if stats.max_hp() != 175:
 		failures.append("contributor HP %d, want 175" % stats.max_hp())
+	# Breakdown: same finals as calculate(), attributed per source.
+	stats.set_contributors("test_pet", [{"stat": "dex", "value": 5.0,
+		"is_percent": false, "source_type": "pet", "source_id": "wolf"}])
+	var bd: Dictionary = stats.get_breakdown()
+	var dex := bd["dex"] as Dictionary
+	# L2 dex 12 + 5 pet = 17.
+	if not is_equal_approx(float(dex["final"]), 17.0):
+		failures.append("breakdown final %.1f, want 17" % float(dex["final"]))
+	if not is_equal_approx(float(dex["final"]), stats.get_stat("dex")):
+		failures.append("breakdown != calculate")
+	if not is_equal_approx(float((dex["flats"] as Dictionary).get("pet", 0.0)), 5.0):
+		failures.append("breakdown pet attribution wrong")
+	var text: String = StatCalculator.format_breakdown(bd, "dex")
+	if not ("Final" in text and "Pet" in text and "17" in text):
+		failures.append("breakdown text missing parts:\n" + text)
 	player.queue_free()

@@ -20,6 +20,8 @@ inventory UI, or real egg timers yet** — those are later stages (§121 order i
 | Data engine | `scripts/core/` (EventBus, RNG, Features, Data, Game) | `BOOT OK …` in output, `DATA ERROR` on bad JSON |
 | Player | `scenes/player/`, `scripts/character/` (Player, CharacterStats, StatCalculator) | Run → move with WASD, status shows lvl/HP; `tests/player/player_check.gd` |
 | Skills | `scripts/skills/` (SkillManager) + `data/skills/`, `data/balance/skills.json` | `tests/skills/skill_check.gd -- --weapon=staff --level=10`, `--check` |
+| Equipment | `scripts/equipment/` (EquipmentManager, domain only — no player wiring yet) | `tests/equipment/equipment_check.gd` |
+| Inventory | `scripts/inventory/` (InventoryManager, domain only — no UI yet) | `tests/inventory/inventory_check.gd` |
 | Loot generator | `scripts/loot/`, `data/equipment|affixes|rarities|effects|balance/loot.json` | Loot panel / loot simulator |
 | Pets + eggs + drops | `scripts/pets/`, `data/pets|eggs|drops|enemies|maps`, `data/balance/pets.json` | Pet panel / pet simulator |
 
@@ -141,7 +143,6 @@ $GODOT --headless --path . --script res://tests/player/player_check.gd
 ```
 
 ### Skill tool
-
 ```sh
 # Show a weapon's tree at a level (demo-spends points in unlock order)
 /godot-binary --headless --path . --script res://tests/skills/skill_check.gd -- \
@@ -153,6 +154,38 @@ $GODOT --headless --path . --script res://tests/player/player_check.gd
 **Scheme:** 1 skill point per 3 player levels (7 by L20) · unlock = 1pt ·
 +1 rank = 1pt up to rank 5 · max 10 skills per weapon · player cap L20.
 Details in `docs/BALANCING.md`.
+
+### Data check (run FIRST after any content edit)
+
+```sh
+# Semantic + cross-reference validation of ALL JSON + negative self-tests.
+/godot-binary --headless --path . --script res://tests/data/data_check.gd -- --check
+```
+
+Catches what structure checks miss: unknown references (egg→ghost pet,
+map→wrong-tier boss), bad enums, inverted ranges, key/id mismatches.
+Contract: `docs/DATA_SCHEMA.md`. Full gate order: data → loot/pet/player/skill → boot.
+
+### Equipment check
+
+```sh
+# Slots, level/stat requirements, two-handed displacement both ways,
+# accessory pairing, pet-slot guard, modifier math, save round-trip.
+/godot-binary --headless --path . --script res://tests/equipment/equipment_check.gd
+```
+
+7 slots (accessory auto-pairs, pet reserved); `occupies` footprint + generic
+`requirements[]` live in equipment JSON. Domain only — player/UI wiring later.
+
+### Inventory check
+
+```sh
+# Capacity, add/remove/find, move/swap, rarity sort, filters, stack merging,
+# save round-trip. Prints INVENTORY CHECK: PASS.
+/godot-binary --headless --path . --script res://tests/inventory/inventory_check.gd
+```
+
+10×6 grid from `data/balance/inventory.json` (stack cap 99). Domain only, no UI.
 
 In-game: the **Loot Simulator** panel → pick Base + Rarity + Level → **Roll item**.
 Rarity-colored names, full tooltip, same generator.
@@ -196,9 +229,10 @@ eggs 2–48h; drops only from kills, gated by map level. Details + roster table 
 
 ## 7. Cookbook (common tasks — all JSON, no code)
 
-> After any data edit: run the matching `--check` (loot and/or pet) plus one
-> headless boot. If it prints `DATA ERROR`, the message tells you the exact
-> file, entry, and missing field.
+> After any data edit: run data `--check` FIRST, then the matching system
+> check (loot/pet/player/skill) plus one headless boot. `DATA ERROR` names the
+> exact file, entry, and field. New files need `"_schema_version": 1` as their
+> first key (see `docs/DATA_SCHEMA.md`).
 
 | Task | Steps |
 | ---- | ----- |

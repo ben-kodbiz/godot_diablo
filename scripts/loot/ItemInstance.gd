@@ -37,6 +37,14 @@ static func make_id(rng: Node) -> String:
 	return "itm_%08x" % n
 
 
+## Slot footprint from the base definition (two-handed rule lives in data).
+static func _footprint(base: Dictionary) -> Array:
+	var occ: Array = ((base.get("occupies", []) as Array).duplicate())
+	if occ.is_empty():
+		occ = [str(base.get("slot", "?"))]
+	return occ
+
+
 static func rarity_label(rarity_id: String) -> String:
 	return str(RARITY_LABELS.get(rarity_id, rarity_id))
 
@@ -94,11 +102,17 @@ static func build(
 			"id": str(ad.get("id", "")),
 			"stat": stat, "value": value,
 			"is_percent": bool(ad.get("is_percent", false)),
+			"source_type": "equipment",
+			"source_id": str(base.get("id", "?")),
 		})
 	var stored_buffs: Array = []
 	var legendary_effect := {}
 	for b in buffs:
 		var bd := (b as Dictionary).duplicate(true)
+		for m in (bd.get("modifiers", []) as Array):
+			var md := m as Dictionary
+			md["source_type"] = "buff"
+			md["source_id"] = str(bd.get("id", "?"))
 		stored_buffs.append(bd)
 		if (bd as Dictionary).has("trigger") and legendary_effect.is_empty():
 			legendary_effect = (bd as Dictionary).duplicate(true)
@@ -112,6 +126,8 @@ static func build(
 		"base_type": str(base.get("base_type", "?")),
 		"required_level": int(base.get("required_level", 1)),
 		"stats": stats,
+		"base_stats": (base.get("base_stats", {}) as Dictionary).duplicate(),
+		"occupies": _footprint(base),
 		"affixes": affix_lines,
 		"buffs": stored_buffs,
 		"legendary_effect": legendary_effect,
