@@ -22,6 +22,7 @@ inventory UI, or real egg timers yet** — those are later stages (§121 order i
 | Skills | `scripts/skills/` (SkillManager) + `data/skills/`, `data/balance/skills.json` | `tests/skills/skill_check.gd -- --weapon=staff --level=10`, `--check` |
 | Equipment | `scripts/equipment/` (EquipmentManager, domain only — no player wiring yet) | `tests/equipment/equipment_check.gd` |
 | Inventory | `scripts/inventory/` (InventoryManager, domain only — no UI yet) | `tests/inventory/inventory_check.gd` |
+| Loadout | `Player` pickup/equip/unequip + stat refresh (integration) | `tests/integration/loadout_check.gd` |
 | Loot generator | `scripts/loot/`, `data/equipment|affixes|rarities|effects|balance/loot.json` | Loot panel / loot simulator |
 | Pets + eggs + drops | `scripts/pets/`, `data/pets|eggs|drops|enemies|maps`, `data/balance/pets.json` | Pet panel / pet simulator |
 
@@ -186,6 +187,14 @@ Contract: `docs/DATA_SCHEMA.md`. Full gate order: data → loot/pet/player/skill
 ```
 
 10×6 grid from `data/balance/inventory.json` (stack cap 99). Domain only, no UI.
+
+### Loadout check (integration)
+
+```sh
+# Loot → inventory → equipment → stats → item_equipped signal, plus refusal
+# paths (under-level, full inventory). Prints LOADOUT CHECK: PASS.
+/godot-binary --headless --path . --script res://tests/integration/loadout_check.gd
+```
 
 In-game: the **Loot Simulator** panel → pick Base + Rarity + Level → **Roll item**.
 Rarity-colored names, full tooltip, same generator.

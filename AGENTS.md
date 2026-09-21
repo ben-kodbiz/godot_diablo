@@ -33,6 +33,8 @@ implementing any system; do not invent architecture that contradicts it.
   (slots, requirements, two-handed, modifiers, save round-trip).
   Inventory check: `<godot> --headless --path . --script res://tests/inventory/inventory_check.gd`
   (capacity, move/swap, sort/filter, stacks, save round-trip).
+  Loadout check: `<godot> --headless --path . --script res://tests/integration/loadout_check.gd`
+  (pickup → equip → stats → signal, refusals).
   Balance scheme lives in `docs/BALANCING.md`, schema in `docs/DATA_SCHEMA.md`, not in code.
 
 ## Build order (do not skip ahead)

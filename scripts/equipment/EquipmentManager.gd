@@ -94,6 +94,25 @@ func _check_requirement(req: Dictionary, stats: Node) -> String:
 	return ""
 
 
+## Read-only preview of occupants that equipping would displace.
+## Returns [] when the item has no fitting slot.
+func preview_displaced(item: Dictionary) -> Array:
+	var primary := resolve_slot(item)
+	if primary == "":
+		return []
+	var new_fp := footprint(item, primary)
+	var out: Array = []
+	for slot in SLOTS:
+		var occupant := _equipped.get(slot, {}) as Dictionary
+		if occupant.is_empty():
+			continue
+		for s in new_fp:
+			if str(s) in footprint(occupant, slot):
+				out.append(occupant.duplicate(true))
+				break
+	return out
+
+
 ## Equip an item. Returns {ok, reason, displaced[]} — displaced occupants
 ## go back to inventory (caller-owned, never destroyed here).
 func equip(item: Dictionary, stats: Node) -> Dictionary:

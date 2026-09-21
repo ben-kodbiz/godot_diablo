@@ -94,6 +94,16 @@ This file tracks what is actually built; update it whenever structure changes.
 - Check: `tests/inventory/inventory_check.gd` (capacity, overflow, move/swap,
   sort/filter, stacking, save round-trip + corrupt).
 
+## Built (equipment integration)
+
+- `Player` owns `InventoryManager` + `EquipmentManager` (`_ready`) and mediates
+  pickup → equip → stats: `pickup_item()`, `equip_item()` (capacity pre-check
+  via `preview_displaced()`, displaced return to inventory, `refresh_stats()`,
+  `item_equipped` emit), `unequip_slot()`. Rules stay in the managers, math in
+  `StatCalculator` — `Player.gd` delegates.
+- Check: `tests/integration/loadout_check.gd` (pickup→equip→stat gain→signal,
+  unequip round-trip, under-level refusal, full-inventory swap refusal).
+
 ## Built (hardening — fixme.md P0)
 - `scripts/core/DataValidator.gd`: semantic validation (types, enums, ranges,
   key/id consistency, cross-file refs incl. tier-correct map placement).
