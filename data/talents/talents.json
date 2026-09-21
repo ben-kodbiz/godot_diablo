@@ -1,0 +1,135 @@
+{
+  "_schema_version": 1,
+  "bow_rapid_shot": {
+    "id": "bow_rapid_shot", "name": "Rapid Shot", "family": "bow",
+    "description": "Faster shooting.",
+    "max_rank": 5, "cost_per_rank": 1,
+    "effects": [{ "stat": "attack_speed", "value_per_rank": 2, "is_percent": true }]
+  },
+  "bow_precision": {
+    "id": "bow_precision", "name": "Precision", "family": "bow",
+    "description": "Deadlier aim.",
+    "max_rank": 5, "cost_per_rank": 1,
+    "effects": [{ "stat": "critical_chance", "value_per_rank": 1, "is_percent": true }]
+  },
+  "bow_multi_shot": {
+    "id": "bow_multi_shot", "name": "Multi Shot", "family": "bow",
+    "description": "Stronger volleys.",
+    "max_rank": 5, "cost_per_rank": 1,
+    "effects": [{ "stat": "damage", "value_per_rank": 3, "is_percent": false }]
+  },
+  "bow_piercing_arrow": {
+    "id": "bow_piercing_arrow", "name": "Piercing Arrow", "family": "bow",
+    "description": "Arrows bite deeper.",
+    "max_rank": 5, "cost_per_rank": 1,
+    "effects": [{ "stat": "critical_damage", "value_per_rank": 4, "is_percent": true }]
+  },
+  "bow_critical_focus": {
+    "id": "bow_critical_focus", "name": "Critical Focus", "family": "bow",
+    "description": "Patient, lethal shots.",
+    "max_rank": 5, "cost_per_rank": 1,
+    "effects": [
+      { "stat": "critical_chance", "value_per_rank": 1, "is_percent": true },
+      { "stat": "dex", "value_per_rank": 1, "is_percent": false }
+    ]
+  },
+  "staff_arcane_power": {
+    "id": "staff_arcane_power", "name": "Arcane Power", "family": "staff",
+    "description": "Raw spell strength.",
+    "max_rank": 5, "cost_per_rank": 1,
+    "effects": [{ "stat": "damage", "value_per_rank": 4, "is_percent": false }]
+  },
+  "staff_mana_flow": {
+    "id": "staff_mana_flow", "name": "Mana Flow", "family": "staff",
+    "description": "Deeper reserves.",
+    "max_rank": 5, "cost_per_rank": 1,
+    "effects": [{ "stat": "mana", "value_per_rank": 10, "is_percent": false }]
+  },
+  "staff_spell_echo": {
+    "id": "staff_spell_echo", "name": "Spell Echo", "family": "staff",
+    "description": "Spells land harder.",
+    "max_rank": 5, "cost_per_rank": 1,
+    "effects": [{ "stat": "skill_power", "value_per_rank": 3, "is_percent": false }]
+  },
+  "staff_elemental_focus": {
+    "id": "staff_elemental_focus", "name": "Elemental Focus", "family": "staff",
+    "description": "Devastating elements.",
+    "max_rank": 5, "cost_per_rank": 1,
+    "effects": [{ "stat": "critical_damage", "value_per_rank": 5, "is_percent": true }]
+  },
+  "staff_arcane_burst": {
+    "id": "staff_arcane_burst", "name": "Arcane Burst", "family": "staff",
+    "description": "Brilliant mind, brilliant blasts.",
+    "max_rank": 5, "cost_per_rank": 1,
+    "effects": [
+      { "stat": "damage", "value_per_rank": 2, "is_percent": false },
+      { "stat": "int", "value_per_rank": 1, "is_percent": false }
+    ]
+  },
+  "sword_cleave": {
+    "id": "sword_cleave", "name": "Cleave", "family": "sword",
+    "description": "Heavier swings.",
+    "max_rank": 5, "cost_per_rank": 1,
+    "effects": [{ "stat": "damage", "value_per_rank": 4, "is_percent": false }]
+  },
+  "sword_heavy_strike": {
+    "id": "sword_heavy_strike", "name": "Heavy Strike", "family": "sword",
+    "description": "Crushing physical force.",
+    "max_rank": 5, "cost_per_rank": 1,
+    "effects": [{ "stat": "physical_damage", "value_per_rank": 3, "is_percent": true }]
+  },
+  "sword_mastery": {
+    "id": "sword_mastery", "name": "Sword Mastery", "family": "sword",
+    "description": "A swordsman's physique.",
+    "max_rank": 5, "cost_per_rank": 1,
+    "effects": [{ "stat": "str", "value_per_rank": 2, "is_percent": false }]
+  },
+  "sword_critical_slash": {
+    "id": "sword_critical_slash", "name": "Critical Slash", "family": "sword",
+    "description": "Find the gaps in armor.",
+    "max_rank": 5, "cost_per_rank": 1,
+    "effects": [{ "stat": "critical_chance", "value_per_rank": 1, "is_percent": true }]
+  },
+  "sword_bloodless_fury": {
+    "id": "sword_bloodless_fury", "name": "Bloodless Fury", "family": "sword",
+    "description": "Cold, tireless assault.",
+    "max_rank": 5, "cost_per_rank": 1,
+    "effects": [
+      { "stat": "attack_speed", "value_per_rank": 1, "is_percent": true },
+      { "stat": "str", "value_per_rank": 1, "is_percent": false }
+    ]
+  },
+  "shield_block_mastery": {
+    "id": "shield_block_mastery", "name": "Block Mastery", "family": "shield",
+    "description": "Turn blows aside.",
+    "max_rank": 5, "cost_per_rank": 1,
+    "effects": [{ "stat": "block", "value_per_rank": 2, "is_percent": false }]
+  },
+  "shield_wall": {
+    "id": "shield_wall", "name": "Shield Wall", "family": "shield",
+    "description": "Ironclad defense.",
+    "max_rank": 5, "cost_per_rank": 1,
+    "effects": [{ "stat": "armor", "value_per_rank": 3, "is_percent": false }]
+  },
+  "shield_guard": {
+    "id": "shield_guard", "name": "Guard", "family": "shield",
+    "description": "A guardian's vigor.",
+    "max_rank": 5, "cost_per_rank": 1,
+    "effects": [{ "stat": "health", "value_per_rank": 12, "is_percent": false }]
+  },
+  "shield_counter": {
+    "id": "shield_counter", "name": "Counter", "family": "shield",
+    "description": "Every block an opening.",
+    "max_rank": 5, "cost_per_rank": 1,
+    "effects": [{ "stat": "damage", "value_per_rank": 3, "is_percent": false }]
+  },
+  "shield_fortification": {
+    "id": "shield_fortification", "name": "Fortification", "family": "shield",
+    "description": "Become the wall.",
+    "max_rank": 5, "cost_per_rank": 1,
+    "effects": [
+      { "stat": "vit", "value_per_rank": 2, "is_percent": false },
+      { "stat": "armor", "value_per_rank": 1, "is_percent": false }
+    ]
+  }
+}

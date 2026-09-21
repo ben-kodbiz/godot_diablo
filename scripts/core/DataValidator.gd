@@ -83,6 +83,7 @@ func validate_all(features: Dictionary = {}) -> bool:
 	validate_balance_pets(bal_pets)
 	validate_balance_player(bal_player, stats)
 	validate_balance_skills(bal_skills, bal_player)
+	validate_talents(_data.get_table("talents"), weapons, stats, bal_skills)
 	validate_balance_inventory(_data.get_table("inventory_balance"))
 	validate_balance_combat(_data.get_table("combat_balance"))
 	if not features.is_empty():
@@ -328,6 +329,41 @@ func validate_skills(table: Dictionary, weapons: Dictionary, bal_skills: Diction
 	for family in per_family.keys():
 		if int(per_family[family]) > cap:
 			_err("skills", str(family), "family", "Family defines %d skills (max %d)." % [per_family[family], cap])
+	return _errors.size() == before
+
+
+func validate_talents(table: Dictionary, weapons: Dictionary, stats: Dictionary, bal_skills: Dictionary) -> bool:
+	var before := _errors.size()
+	var cap := 10
+	var caps: Dictionary = bal_skills.get("caps", {})
+	if not caps.is_empty():
+		cap = int(caps.get("max_talents_per_tree", 10))
+	var per_family := {}
+	for key in table.keys():
+		var e := table[key] as Dictionary
+		_check_key_id("talents", str(key), e)
+		var family := str(e.get("family", ""))
+		if not weapons.has(family):
+			_err("talents", str(key), "family", "Unknown weapon family '%s'. Referenced object does not exist." % family)
+		per_family[family] = int(per_family.get(family, 0)) + 1
+		if not _is_int_like(e.get("max_rank", 0)) or int(e.get("max_rank", 0)) < 1:
+			_err("talents", str(key), "max_rank", "Must be an integer >= 1.")
+		if e.has("cost_per_rank") and (not _is_int_like(e["cost_per_rank"]) or int(e["cost_per_rank"]) < 1):
+			_err("talents", str(key), "cost_per_rank", "Must be an integer >= 1.")
+		var effects: Array = e.get("effects", [])
+		if effects.is_empty():
+			_err("talents", str(key), "effects", "Must list at least one effect.")
+		for fx in effects:
+			var fd := fx as Dictionary
+			if not stats.has(str(fd.get("stat", ""))) and str(fd.get("stat", "")) not in DERIVED_STATS:
+				_err("talents", str(key), "effects", "Unknown stat '%s'." % fd.get("stat", ""))
+			if not _is_num(fd.get("value_per_rank", "")):
+				_err("talents", str(key), "effects", "Effect needs a numeric value_per_rank.")
+			if fd.has("is_percent") and typeof(fd["is_percent"]) != TYPE_BOOL:
+				_err("talents", str(key), "effects", "is_percent must be a bool.")
+	for family in per_family.keys():
+		if int(per_family[family]) > cap:
+			_err("talents", str(family), "family", "Tree defines %d talents (max %d)." % [per_family[family], cap])
 	return _errors.size() == before
 
 

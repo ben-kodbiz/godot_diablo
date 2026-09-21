@@ -5,12 +5,17 @@ extends Node2D
 
 const LootSimulatorPanel = preload("res://scripts/ui/LootSimulatorPanel.gd")
 const PetSimulatorPanel = preload("res://scripts/ui/PetSimulatorPanel.gd")
+const InventoryPanel = preload("res://scripts/ui/InventoryPanel.gd")
+const EquipmentPanel = preload("res://scripts/ui/EquipmentPanel.gd")
+const TalentPanel = preload("res://scripts/ui/TalentPanel.gd")
+const CharacterPanel = preload("res://scripts/ui/CharacterPanel.gd")
 const EnemyScene = preload("res://scenes/enemies/Enemy.tscn")
 const LootGen = preload("res://scripts/loot/LootGenerator.gd")
 const PetGen = preload("res://scripts/pets/PetGenerator.gd")
 
 var _info: Label
 var last_drops: Array = [] # dev introspection: [{enemy, item, egg}].
+var ui_panels := {} # name -> panel (real game UI, all builds).
 
 
 func _ready() -> void:
@@ -41,7 +46,52 @@ func _ready() -> void:
 		add_child(LootSimulatorPanel.new())
 		_spawn_training_dummy()
 
+	_mount_ui()
 	_refresh_status()
+
+
+## Real game UI (all builds): panels bind to the player, only one visible.
+func _mount_ui() -> void:
+	var player := get_node_or_null("Player")
+	var defs := {
+		"inventory": InventoryPanel, "equipment": EquipmentPanel,
+		"talents": TalentPanel, "character": CharacterPanel,
+	}
+	for key in defs.keys():
+		var panel = (defs[key] as GDScript).new()
+		add_child(panel)
+		ui_panels[key] = panel
+		if player != null:
+			panel.bind(player, self)
+
+
+func _unhandled_input(event: InputEvent) -> void:
+	if event.is_action_pressed("toggle_inventory"):
+		_show_only(["inventory", "equipment"])
+	elif event.is_action_pressed("toggle_character"):
+		_show_only(["character"])
+	elif event.is_action_pressed("toggle_talents"):
+		_show_only(["talents"])
+
+
+## Show exactly these panels (toggle: all-visible → hide all). Others hide.
+func _show_only(names: Array) -> void:
+	var any_hidden := false
+	for n in names:
+		if not (ui_panels[n] as CanvasItem).visible:
+			any_hidden = true
+	for key in ui_panels.keys():
+		var panel = ui_panels[key]
+		panel.visible = (str(key) in names) and any_hidden
+		if panel.visible and panel.has_method("refresh"):
+			panel.refresh()
+
+
+func refresh_ui() -> void:
+	for key in ui_panels.keys():
+		var panel = ui_panels[key]
+		if panel.visible and panel.has_method("refresh"):
+			panel.refresh()
 
 
 ## Debug-only target dummy: one goblin to swing at until maps spawn enemies.

@@ -39,6 +39,12 @@ implementing any system; do not invent architecture that contradicts it.
   (formula, crit, armor curve, determinism).
   Combat flow: `<godot> --headless --path . --script res://tests/integration/combat_flow_check.gd`
   (attack → kill → XP + drop through Main).
+  Talent check: `<godot> --headless --path . --script res://tests/talents/talent_check.gd`
+  (trees, economy, family gating, caps, player integration).
+  Collection check: `<godot> --headless --path . --script res://tests/pets/collection_check.gd`
+  (collection rules, save, egg lifecycle on test clock).
+  UI check: `<godot> --headless --path . --script res://tests/ui/ui_check.gd`
+  (toggles, panel-driven equip/talent, breakdown view).
   Balance scheme lives in `docs/BALANCING.md`, schema in `docs/DATA_SCHEMA.md`, not in code.
 
 ## Build order (do not skip ahead)

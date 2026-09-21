@@ -8,10 +8,16 @@ extends CharacterBody2D
 const InventoryManager = preload("res://scripts/inventory/InventoryManager.gd")
 const EquipmentManager = preload("res://scripts/equipment/EquipmentManager.gd")
 const DamageCalculator = preload("res://scripts/combat/DamageCalculator.gd")
+const TalentManager = preload("res://scripts/talents/TalentManager.gd")
+const SkillManager = preload("res://scripts/skills/SkillManager.gd")
+const PetCollectionManager = preload("res://scripts/pets/PetCollectionManager.gd")
 
 var stats: Node
 var inventory: RefCounted
 var equipment: RefCounted
+var talents: RefCounted
+var skills: RefCounted
+var collection: RefCounted
 var _move_base := 200.0
 var _facing := Vector2.RIGHT
 var _attack_cd := 0.0
@@ -26,6 +32,9 @@ func _ready() -> void:
 		_move_base = float(rule.get("base_px_per_sec", _move_base))
 		inventory = InventoryManager.new(dm)
 		equipment = EquipmentManager.new(dm)
+		talents = TalentManager.new(dm)
+		skills = SkillManager.new(dm)
+		collection = PetCollectionManager.new()
 	else:
 		push_warning("Player: DataManager missing, loadout managers unavailable.")
 	refresh_stats()
@@ -93,11 +102,25 @@ func current_speed() -> float:
 	return _move_base * (1.0 + bonus / 100.0)
 
 
-## Push equipped modifiers into stats. Called after every loadout change.
+## Push equipped + talent modifiers into stats. Active talent tree follows
+## the equipped main-hand (bow equipped → bow tree); empty-handed → none.
 func refresh_stats() -> void:
 	if stats == null or equipment == null:
 		return
 	stats.set_contributors("equipment", equipment.to_modifiers())
+	if talents != null:
+		talents.set_active_family(_active_weapon_family())
+		stats.set_contributors("talents", talents.to_modifiers())
+	if collection != null:
+		stats.set_contributors("pet", collection.active_modifiers())
+
+
+## Weapon id driving talents/skills (base_type of main-hand, "" if none).
+func _active_weapon_family() -> String:
+	var main: Dictionary = equipment.get_equipped("main_hand")
+	if main.is_empty():
+		return ""
+	return str(main.get("base_type", ""))
 
 
 ## Loot pickup → inventory. Returns InventoryManager.add() result.

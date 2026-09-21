@@ -128,6 +128,40 @@ This file tracks what is actually built; update it whenever structure changes.
 - Check: `tests/integration/combat_flow_check.gd` (swing → HP falls → death →
   signal + XP + recorded drop, through the real Main).
 
+## Built (talent/skill integration — fixme.md TASK 15)
+
+- `scripts/talents/TalentManager.gd` (`_init(data)`): points = level, active-tree
+  gating, cost/rank guards, `to_modifiers()` stamped `talent`, `reset()`.
+  20 talents (5 per bow/staff/sword/shield tree). SkillManager (executables,
+  1pt/3lvls) and TalentManager (passives, 1pt/lvl) are deliberately parallel —
+  same shape, separate economies, never mixed.
+- `Player` owns both managers; `refresh_stats()` pushes equipment + talent
+  modifiers and derives the active tree from the equipped main-hand.
+- Check: `tests/talents/talent_check.gd` (trees, economy, gating, caps,
+  modifier math, reset, equip→tree→stat through the player).
+
+## Built (game UI — fixme.md TASK 12)
+
+- `scripts/ui/`: `InventoryPanel` (60-slot grid, hover tooltips, select+Equip),
+  `EquipmentPanel` (7 rows, Unequip), `TalentPanel` (4 trees, Unlock/+Rank,
+  active-tree spend lock), `CharacterPanel` (read-only breakdown view).
+  Pure views (§43): all rules in managers, refresh via `Main.refresh_ui()`,
+  mutually exclusive, toggled by I/C/T. Mounted in all builds.
+- Check: `tests/ui/ui_check.gd` (toggles, render, panel-driven equip/unequip/
+  talent spend, breakdown text, through the real Main).
+
+## Built (pet collection + egg timers — fixme.md §25-28)
+
+- `scripts/core/ClockService.gd`: system/test clock abstraction — production
+  code never calls Time directly.
+- `scripts/pets/EggInstance.gd`: static state machine
+  stored→incubating→ready→hatched from timestamps (browser-close safe).
+- `scripts/pets/PetCollectionManager.gd`: owns pets, active pet, discovery,
+  counts, `active_modifiers()`, save round-trip. `Player` owns one and feeds
+  pet modifiers into stats — the full base+level+equip+talent+pet pipeline.
+- Check: `tests/pets/collection_check.gd` (collection rules, save, full egg
+  lifecycle on a test clock).
+
 ## Built (hardening — fixme.md P0)
 - `scripts/core/DataValidator.gd`: semantic validation (types, enums, ranges,
   key/id consistency, cross-file refs incl. tier-correct map placement).

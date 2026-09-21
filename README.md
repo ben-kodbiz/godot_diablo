@@ -23,6 +23,9 @@ inventory UI, or real egg timers yet** — those are later stages (§121 order i
 | Equipment | `scripts/equipment/` (EquipmentManager, domain only — no player wiring yet) | `tests/equipment/equipment_check.gd` |
 | Inventory | `scripts/inventory/` (InventoryManager, domain only — no UI yet) | `tests/inventory/inventory_check.gd` |
 | Loadout | `Player` pickup/equip/unequip + stat refresh (integration) | `tests/integration/loadout_check.gd` |
+| Talents | `scripts/talents/` (TalentManager, passives) + `data/talents/` | `tests/talents/talent_check.gd` |
+| Game UI | `scripts/ui/` (inventory/equipment/talents/character panels, I/C/T) | `tests/ui/ui_check.gd` |
+| Pet timers | `EggInstance` + `ClockService` + `PetCollectionManager` (player-owned) | `tests/pets/collection_check.gd` |
 | Combat | `scripts/combat/` (DamageCalculator) + `scenes/enemies/`, player basic attack, Main drop wiring | `tests/combat/combat_check.gd`, `tests/integration/combat_flow_check.gd` |
 | Loot generator | `scripts/loot/`, `data/equipment|affixes|rarities|effects|balance/loot.json` | Loot panel / loot simulator |
 | Pets + eggs + drops | `scripts/pets/`, `data/pets|eggs|drops|enemies|maps`, `data/balance/pets.json` | Pet panel / pet simulator |
@@ -157,6 +160,38 @@ $GODOT --headless --path . --script res://tests/player/player_check.gd
 +1 rank = 1pt up to rank 5 · max 10 skills per weapon · player cap L20.
 Details in `docs/BALANCING.md`.
 
+### Talent check
+
+```sh
+# Trees, point economy, active-family gating, caps, modifier math, reset,
+# and equip → tree → stat gain through the player. Prints TALENT CHECK: PASS.
+/godot-binary --headless --path . --script res://tests/talents/talent_check.gd
+```
+
+**Scheme:** talent points = player level · spend only in the equipped weapon's
+tree · cost 1/rank to rank 5 · 5 talents per tree (cap 10). Talents are
+passives (feed stats); skills are executables — separate systems.
+
+### Collection check (pets + egg timers)
+
+```sh
+# Collection rules, save round-trip, full egg lifecycle on a test clock
+# (stored → incubating → ready → hatched, premature refusal). Prints
+# COLLECTION CHECK: PASS.
+/godot-binary --headless --path . --script res://tests/pets/collection_check.gd
+```
+
+### UI check
+
+```sh
+# Real panels against a live player: I/C/T toggles, inventory render +
+# panel equip/unequip, panel talent spend + stat gain, breakdown text.
+/godot-binary --headless --path . --script res://tests/ui/ui_check.gd
+```
+
+Game UI (all builds, I/C/T keys): inventory grid + equipment rows + talent
+trees + character breakdown. Pet collection UI is still to come.
+
 ### Data check (run FIRST after any content edit)
 
 ```sh
@@ -275,6 +310,7 @@ eggs 2–48h; drops only from kills, gated by map level. Details + roster table 
 | **Add an egg** | Append to `data/eggs/eggs.json`: `id, name, hatch_time_hours, min_map_level, possible_pets[] and/or wild_rolls[]`. Add it to a tier pool in `data/drops/enemy_drops.json`. |
 | **Retune drops/pets** | `data/drops/enemy_drops.json` (tier chances + pools), `data/balance/pets.json` (lines + multipliers per rarity). Re-run pet `--check`: gating, rates, dragon share. |
 | **Add a skill** | Append to `data/skills/skills.json`: `id, name, family, unlock_level (1–20), max_rank, base{damage_flat/damage_pct/cooldown_sec/mana_cost}, per_rank{…}`. Keep ≤10 per family, unlocks ascending. Re-run skill `--check`. |
+| **Add a talent** | Append to `data/talents/talents.json`: `id, name, family, max_rank, effects[{stat, value_per_rank, is_percent?}]`. Keep ≤10 per tree. Re-run talent check. |
 | **Tune player** | `data/balance/player.json` (base/growth stats, HP/mana rules, move speed, XP curve). Re-run player check. |
 | **Add an enemy / map** | `data/enemies/enemies.json` needs `id, tier (normal/elite/boss), health, damage` (+ flavor: name, level, armor, xp, loot_table). `data/maps/maps.json` needs `id, biome` + `enemies[]`, `elites[]`, `boss` ("" = none). Enemy/map *behavior* (AI, generation) arrives in later stages — data first. |
 | **Disable an unfinished system** | `data/config/features.json` (`crafting/quests: false`). Code gates on `FeatureManager.is_enabled(…)`. |

@@ -1,0 +1,5 @@
+config_version=5
+
+[application]
+config/name="CozyLootRPG"
+run/main_scene="res://scenes/world/world.tscn"

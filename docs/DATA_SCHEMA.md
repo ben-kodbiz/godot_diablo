@@ -75,6 +75,12 @@ base{damage_flat, damage_pct, cooldown_sec>=0, mana_cost>=0},
 per_rank{damage_flat, damage_pct}}`. ≤10 skills per family (cap from
 `skill_balance.caps`).
 
+### talents.json — weapon-tree passive progression
+`{id, name, family ∈ weapons keys, max_rank>=1, cost_per_rank>=1?,
+effects[{stat ∈ vocab, value_per_rank numeric, is_percent?}] (non-empty)}`.
+≤10 talents per tree (cap `max_talents_per_tree`). Points-gated only;
+family spending gated at runtime by the equipped weapon.
+
 ### eggs.json — hatchables
 `{id, name, hatch_time_hours>0, min_map_level>=1,
 possible_pets[{pet ∈ pets, weight>0}]?, wild_rolls[{species ∈ species,
@@ -112,7 +118,8 @@ match `rarities.json` exactly both ways.
 
 ### balance/skills.json — skill economy
 `{economy{unlock_every_levels>=1, points_per_unlock>=1},
-caps{max_skills_per_weapon>=1, max_skill_rank>=1, max_player_level>=1}}`.
+caps{max_skills_per_weapon>=1, max_skill_rank>=1, max_player_level>=1,
+max_talents_per_tree>=1}}`.
 `max_player_level` MUST equal player `xp_curve.max_level`.
 
 ### config/features.json — feature flags

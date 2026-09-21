@@ -20,6 +20,15 @@ flat = base_flat + per_flat×(R−1), pct likewise; cooldown/mana fixed.
 Families unlock at 1/4/7/10/13 (starter → … → Meteor-tier). Skill execution
 (cooldowns, targeting) is combat-stage work; numbers are final here.
 
+## Talents (`data/talents/talents.json`)
+
+Universal talent points: lifetime = player level (1 at L1, 20 at L20).
+Spending gated by equipped weapon's tree (sword equipped → sword tree).
+Cost 1/rank, max rank 5; 5 talents per tree today (cap 10).
+Effect = value_per_rank × rank, stamped `talent` into the breakdown.
+Talents are passives; skills are executables — separate managers, separate
+economies, never mixed.
+
 ## Rarity scheme (`data/rarities/rarities.json`)
 
 | Rarity | Color | Weight | Affixes | Bonus buff |
