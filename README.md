@@ -26,6 +26,7 @@ inventory UI, or real egg timers yet** — those are later stages (§121 order i
 | Talents | `scripts/talents/` (TalentManager, passives) + `data/talents/` | `tests/talents/talent_check.gd` |
 | Game UI | `scripts/ui/` (inventory/equipment/talents/character panels, I/C/T) | `tests/ui/ui_check.gd` |
 | Pet timers | `EggInstance` + `ClockService` + `PetCollectionManager` (player-owned) | `tests/pets/collection_check.gd` |
+| Map gen | `scripts/procedural/` (MapGenerator, domain only — no rendering yet) | `tests/maps/map_check.gd` |
 | Combat | `scripts/combat/` (DamageCalculator) + `scenes/enemies/`, player basic attack, Main drop wiring | `tests/combat/combat_check.gd`, `tests/integration/combat_flow_check.gd` |
 | Loot generator | `scripts/loot/`, `data/equipment|affixes|rarities|effects|balance/loot.json` | Loot panel / loot simulator |
 | Pets + eggs + drops | `scripts/pets/`, `data/pets|eggs|drops|enemies|maps`, `data/balance/pets.json` | Pet panel / pet simulator |
@@ -191,6 +192,17 @@ passives (feed stats); skills are executables — separate systems.
 
 Game UI (all builds, I/C/T keys): inventory grid + equipment rows + talent
 trees + character breakdown. Pet collection UI is still to come.
+
+### Map check
+
+```sh
+# Determinism (same seed → same map), 3 maps × 30 seeds valid, level bands,
+# seed/version recording. Prints MAP CHECK: PASS.
+/godot-binary --headless --path . --script res://tests/maps/map_check.gd
+```
+
+Layouts only (rooms/corridors/spawns/groups) — rendering and live spawning
+arrive with the map scene stage. Bands: packs ±1, elites +2, boss +3.
 
 ### Data check (run FIRST after any content edit)
 

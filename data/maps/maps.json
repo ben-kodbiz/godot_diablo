@@ -20,6 +20,19 @@
       "enabled": true,
       "player_level_offset_min": -2,
       "player_level_offset_max": 2
+    },
+    "gen": {
+      "grid_width": 60,
+      "grid_height": 60,
+      "room_min_size": 5,
+      "room_max_size": 12,
+      "max_place_tries": 200,
+      "max_retries": 10,
+      "pack_min": 2,
+      "pack_max": 4,
+      "level_variance": 1,
+      "elite_level_bonus": 2,
+      "boss_level_bonus": 3
     }
   },
   "forest_02": {
@@ -44,6 +57,19 @@
       "enabled": true,
       "player_level_offset_min": -2,
       "player_level_offset_max": 2
+    },
+    "gen": {
+      "grid_width": 60,
+      "grid_height": 60,
+      "room_min_size": 5,
+      "room_max_size": 12,
+      "max_place_tries": 200,
+      "max_retries": 10,
+      "pack_min": 2,
+      "pack_max": 4,
+      "level_variance": 1,
+      "elite_level_bonus": 2,
+      "boss_level_bonus": 3
     }
   },
   "forest_03": {
@@ -66,6 +92,19 @@
       "enabled": true,
       "player_level_offset_min": -2,
       "player_level_offset_max": 2
+    },
+    "gen": {
+      "grid_width": 60,
+      "grid_height": 60,
+      "room_min_size": 5,
+      "room_max_size": 12,
+      "max_place_tries": 200,
+      "max_retries": 10,
+      "pack_min": 2,
+      "pack_max": 4,
+      "level_variance": 1,
+      "elite_level_bonus": 2,
+      "boss_level_bonus": 3
     }
   }
 }

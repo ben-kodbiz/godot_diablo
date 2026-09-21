@@ -449,6 +449,17 @@ func validate_maps(table: Dictionary, enemies: Dictionary) -> bool:
 				_err("maps", str(key), "boss", "Unknown enemy '%s'. Referenced object does not exist." % boss)
 			elif str((enemies[boss] as Dictionary).get("tier", "")) != "boss":
 				_err("maps", str(key), "boss", "'%s' is tier '%s', not boss." % [boss, (enemies[boss] as Dictionary).get("tier", "")])
+		var gen: Dictionary = e.get("gen", {})
+		if not gen.is_empty():
+			for field in ["grid_width", "grid_height", "room_min_size", "room_max_size",
+					"max_place_tries", "max_retries", "pack_min", "pack_max",
+					"level_variance", "elite_level_bonus", "boss_level_bonus"]:
+				if not _is_int_like(gen.get(field, -1)) or int(gen.get(field, -1)) < 0:
+					_err("maps", str(key), "gen.%s" % field, "Must be an integer >= 0.")
+			if int(gen.get("room_min_size", 1)) > int(gen.get("room_max_size", 1)):
+				_err("maps", str(key), "gen", "room_min_size exceeds room_max_size.")
+			if int(gen.get("pack_min", 1)) > int(gen.get("pack_max", 1)):
+				_err("maps", str(key), "gen", "pack_min exceeds pack_max.")
 	return _errors.size() == before
 
 

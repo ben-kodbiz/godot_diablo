@@ -94,7 +94,10 @@ armor?/xp?, loot_table ∈ loot_tables, level_scaling?, phases[{health_threshold
 ### maps.json — map definitions (not generated layouts)
 `{id, name, biome, minimum_level>=1, maximum_level>=minimum,
 room_count_min/max (1<=min<=max), enemies[non-empty, all tier normal],
-elites[all tier elite], boss ("" or tier boss), scaling{…}}`.
+elites[all tier elite], boss ("" or tier boss), scaling{…},
+gen{grid_width/height, room_min/max_size, max_place_tries, max_retries,
+pack_min/max, level_variance, elite_level_bonus, boss_level_bonus} (all
+ints >= 0, mins <= maxes)}`.
 Tier placement is enforced: elites lists with normal-tier ids fail.
 
 ### drops/enemy_drops.json — kill → egg chances

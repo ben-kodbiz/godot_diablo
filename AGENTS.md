@@ -45,6 +45,8 @@ implementing any system; do not invent architecture that contradicts it.
   (collection rules, save, egg lifecycle on test clock).
   UI check: `<godot> --headless --path . --script res://tests/ui/ui_check.gd`
   (toggles, panel-driven equip/talent, breakdown view).
+  Map check: `<godot> --headless --path . --script res://tests/maps/map_check.gd`
+  (determinism, 3 maps × 30 seeds, level bands).
   Balance scheme lives in `docs/BALANCING.md`, schema in `docs/DATA_SCHEMA.md`, not in code.
 
 ## Build order (do not skip ahead)

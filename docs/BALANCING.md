@@ -143,6 +143,15 @@ Troll Shaman elite + **Forest Guardian boss** (2-phase stub: normal/enraged).
 Enemies carry `tier` (normal/elite/boss) + `loot_table`; maps list `enemies`,
 `elites`, and one `boss` ("" = none).
 
+## Map level bands (procedural generation)
+
+Map level = clamp(player ± 2, map min/max). Within a map, mobs are never flat:
+normal packs at map level ±1 (2–4 per room), elites at +2 (spread rooms),
+boss at +3 (farthest room). Layouts: 60×60 grid, 5–12px rooms, chained +
+loop corridors, spawn/exit/boss distinct, all rooms connected — validated
+every generation, retried (≤10) then loud failure. Same seed → same map
+(`generation_version` recorded for future algorithm changes).
+
 ## Validation
 
 ```sh

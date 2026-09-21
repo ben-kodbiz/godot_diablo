@@ -162,6 +162,18 @@ This file tracks what is actually built; update it whenever structure changes.
 - Check: `tests/pets/collection_check.gd` (collection rules, save, full egg
   lifecycle on a test clock).
 
+## Built (procedural maps — domain, no rendering yet)
+
+- `scripts/procedural/MapGenerator.gd` (`_init(rng, data)`): seeded room
+  placement (no overlaps), chained + loop L-corridors, spawn/exit/boss/elite
+  assignment, enemy packs + loot spots, map-level bands. All randomness via
+  RNGManager after `set_seed(hash(map:seed:attempt))` — same seed, same map.
+- `validate_layout()` (counts, overlaps, distinct specials, BFS connectivity,
+  in-room spawns, boss iff def has one); failures retry ≤10 then loud fail.
+  `generation_version` recorded on every layout.
+- Check: `tests/maps/map_check.gd` (determinism, 3 maps × 30 seeds valid,
+  level bands, seed/version recording).
+
 ## Built (hardening — fixme.md P0)
 - `scripts/core/DataValidator.gd`: semantic validation (types, enums, ranges,
   key/id consistency, cross-file refs incl. tier-correct map placement).
