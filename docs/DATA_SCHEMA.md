@@ -83,7 +83,7 @@ weight>0}]?}`. At least one hatch option total.
 ### enemies.json — enemy definitions (not instances)
 `{id, name, tier ∈ tiers, base_level>=1, health>0, damage>=0,
 armor?/xp?, loot_table ∈ loot_tables, level_scaling?, phases[{health_threshold
-0..100, behavior}]?}`.
+0..100, behavior}]?, tint[r,g,b]?}`.
 
 ### maps.json — map definitions (not generated layouts)
 `{id, name, biome, minimum_level>=1, maximum_level>=minimum,
@@ -122,6 +122,14 @@ now (flag-dependency validation is a later stage).
 ### balance/inventory.json — inventory grid
 `{grid{width>=1, height>=1}, stacking{max_stack>=1}}`. Slot count is content
 config, not code.
+
+### balance/combat.json — damage numbers
+`{crit{base_mult>=1}, armor{constant>0}, variance{range 0..1},
+limits{min_damage>=1}}`. Formula: `base×skill×weapon×buff`, crit
+`×(base+crit_dmg%/100)`, variance `×(1−v+2·v·roll)`, armor `×K/(K+armor)`.
+Plus `player_basic{base_damage/str_mult/range_px/cooldown_sec}`,
+`enemy_scaling{hp/dmg/xp_per_level}` (all >= 0),
+`enemy_ai{move_speed/aggro_range/hit_range/contact_cooldown}` (all >= 0).
 
 ## Modifier contract (fixme.md §9–11)
 

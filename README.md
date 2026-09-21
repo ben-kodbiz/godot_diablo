@@ -23,6 +23,7 @@ inventory UI, or real egg timers yet** — those are later stages (§121 order i
 | Equipment | `scripts/equipment/` (EquipmentManager, domain only — no player wiring yet) | `tests/equipment/equipment_check.gd` |
 | Inventory | `scripts/inventory/` (InventoryManager, domain only — no UI yet) | `tests/inventory/inventory_check.gd` |
 | Loadout | `Player` pickup/equip/unequip + stat refresh (integration) | `tests/integration/loadout_check.gd` |
+| Combat | `scripts/combat/` (DamageCalculator) + `scenes/enemies/`, player basic attack, Main drop wiring | `tests/combat/combat_check.gd`, `tests/integration/combat_flow_check.gd` |
 | Loot generator | `scripts/loot/`, `data/equipment|affixes|rarities|effects|balance/loot.json` | Loot panel / loot simulator |
 | Pets + eggs + drops | `scripts/pets/`, `data/pets|eggs|drops|enemies|maps`, `data/balance/pets.json` | Pet panel / pet simulator |
 
@@ -194,6 +195,26 @@ Contract: `docs/DATA_SCHEMA.md`. Full gate order: data → loot/pet/player/skill
 # Loot → inventory → equipment → stats → item_equipped signal, plus refusal
 # paths (under-level, full inventory). Prints LOADOUT CHECK: PASS.
 /godot-binary --headless --path . --script res://tests/integration/loadout_check.gd
+```
+
+### Combat check
+
+```sh
+# Damage formula: multiplier chain, crit on/off, armor curve, variance
+# determinism, min-damage floor, result shape. Prints COMBAT CHECK: PASS.
+/godot-binary --headless --path . --script res://tests/combat/combat_check.gd
+```
+
+Pure math (rolls in, result out — no RNG calls, no scenes). Numbers in
+`data/balance/combat.json`.
+
+### Combat flow check (integration)
+
+```sh
+# Real Main scene: training dummy → attacks → death → enemy_killed + XP +
+# recorded drop. Debug builds spawn one forest goblin to swing at; attack with
+# mouse/space, move with WASD. Prints COMBAT FLOW: PASS.
+/godot-binary --headless --path . --script res://tests/integration/combat_flow_check.gd
 ```
 
 In-game: the **Loot Simulator** panel → pick Base + Rarity + Level → **Roll item**.

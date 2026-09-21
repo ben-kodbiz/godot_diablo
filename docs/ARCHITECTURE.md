@@ -104,6 +104,30 @@ This file tracks what is actually built; update it whenever structure changes.
 - Check: `tests/integration/loadout_check.gd` (pickup→equip→stat gain→signal,
   unequip round-trip, under-level refusal, full-inventory swap refusal).
 
+## Built (combat domain — fixme.md TASK 13)
+
+- `scripts/combat/DamageCalculator.gd`: pure static `calculate(request,
+  balance)` — multipliers → crit (caller-supplied rolls only, no RNG calls,
+  no JSON access) → variance → armor `K/(K+armor)` → min-damage floor.
+  Result carries `amount/raw/type/critical/blocked/absorbed/source/target`
+  (§72) for UI to consume blind. Enemy entities + scene wiring are TASK 14.
+- Check: `tests/combat/combat_check.gd` (chain math, crit on/off, armor curve,
+  variance determinism, floor, result shape).
+
+## Built (combat scene integration — fixme.md TASK 14)
+
+- `scenes/enemies/Enemy.tscn` + `scripts/enemies/Enemy.gd`: definition-driven
+  (setup loads JSON + level scaling, tier tint), `take_hit()` (own armor +
+  DamageCalculator), `die()` (died + `enemy_killed`), chase/contact AI from
+  balance. Instance state is runtime; definitions stay read-only.
+- `Player.try_attack()`: facing melee query (enemies layer 2), cooldown,
+  basic-attack damage (base + STR), crit/variance rolls via RNGManager.
+  `Main.register_enemy()` wires death → XP + placeholder drops (loot-table
+  contract stage replaces the random-base hookup); debug builds spawn one
+  training goblin.
+- Check: `tests/integration/combat_flow_check.gd` (swing → HP falls → death →
+  signal + XP + recorded drop, through the real Main).
+
 ## Built (hardening — fixme.md P0)
 - `scripts/core/DataValidator.gd`: semantic validation (types, enums, ranges,
   key/id consistency, cross-file refs incl. tier-correct map placement).

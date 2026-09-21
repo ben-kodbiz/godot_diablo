@@ -9,7 +9,12 @@
     "damage": 5,
     "armor": 0,
     "xp": 8,
-    "loot_table": "forest_common"
+    "loot_table": "forest_common",
+    "tint": [
+      0.3,
+      0.9,
+      0.3
+    ]
   },
   "forest_goblin": {
     "id": "forest_goblin",
@@ -20,7 +25,12 @@
     "damage": 8,
     "armor": 2,
     "xp": 10,
-    "loot_table": "forest_common"
+    "loot_table": "forest_common",
+    "tint": [
+      0.55,
+      0.8,
+      0.3
+    ]
   },
   "dire_wolf": {
     "id": "dire_wolf",
@@ -31,7 +41,12 @@
     "damage": 12,
     "armor": 3,
     "xp": 16,
-    "loot_table": "forest_common"
+    "loot_table": "forest_common",
+    "tint": [
+      0.5,
+      0.5,
+      0.6
+    ]
   },
   "goblin_brute": {
     "id": "goblin_brute",
@@ -42,7 +57,12 @@
     "damage": 18,
     "armor": 6,
     "xp": 45,
-    "loot_table": "forest_elite"
+    "loot_table": "forest_elite",
+    "tint": [
+      0.85,
+      0.45,
+      0.2
+    ]
   },
   "troll_shaman": {
     "id": "troll_shaman",
@@ -53,7 +73,12 @@
     "damage": 24,
     "armor": 4,
     "xp": 70,
-    "loot_table": "forest_elite"
+    "loot_table": "forest_elite",
+    "tint": [
+      0.6,
+      0.35,
+      0.85
+    ]
   },
   "forest_guardian": {
     "id": "forest_guardian",
@@ -75,6 +100,11 @@
         "health_threshold": 50,
         "behavior": "enraged"
       }
+    ],
+    "tint": [
+      0.9,
+      0.2,
+      0.45
     ]
   }
 }

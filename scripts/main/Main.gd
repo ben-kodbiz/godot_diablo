@@ -5,8 +5,12 @@ extends Node2D
 
 const LootSimulatorPanel = preload("res://scripts/ui/LootSimulatorPanel.gd")
 const PetSimulatorPanel = preload("res://scripts/ui/PetSimulatorPanel.gd")
+const EnemyScene = preload("res://scenes/enemies/Enemy.tscn")
+const LootGen = preload("res://scripts/loot/LootGenerator.gd")
+const PetGen = preload("res://scripts/pets/PetGenerator.gd")
 
 var _info: Label
+var last_drops: Array = [] # dev introspection: [{enemy, item, egg}].
 
 
 func _ready() -> void:
@@ -35,8 +39,46 @@ func _ready() -> void:
 	if OS.is_debug_build():
 		add_child(PetSimulatorPanel.new())
 		add_child(LootSimulatorPanel.new())
+		_spawn_training_dummy()
 
 	_refresh_status()
+
+
+## Debug-only target dummy: one goblin to swing at until maps spawn enemies.
+func _spawn_training_dummy() -> void:
+	var dummy = EnemyScene.instantiate()
+	dummy.position = Vector2(760, 360)
+	register_enemy(dummy, "forest_goblin", 1)
+
+
+## World-owned enemy registration (MapManager takes this over later):
+## definition setup, death → XP + placeholder drops.
+func register_enemy(enemy: Node, def_id: String, level: int) -> bool:
+	add_child(enemy) # in-tree before setup: setup() uses absolute lookups.
+	if not enemy.call("setup", def_id, level):
+		enemy.queue_free()
+		return false
+	enemy.connect("died", _on_enemy_died)
+	return true
+
+
+func _on_enemy_died(enemy: Node) -> void:
+	var player := get_node_or_null("Player")
+	if player != null:
+		player.stats.add_xp(int(enemy.get("xp_reward")))
+	# Placeholder drop hookup until the loot-table contract stage (TASK 17/18):
+	# random base at enemy level + tier egg roll.
+	var lootgen: RefCounted = LootGen.new(RNGManager, DataManager)
+	var petgen: RefCounted = PetGen.new(RNGManager, DataManager)
+	var bases: Array = (DataManager.get_table("equipment") as Dictionary).keys()
+	bases.sort()
+	var item: Dictionary = lootgen.generate_item(
+		str(bases[RNGManager.random_int(0, bases.size() - 1)]), int(enemy.get("level")))
+	var egg_id: String = petgen.roll_egg_drop(str(enemy.get("tier")), int(enemy.get("level")))
+	last_drops.append({"enemy": enemy.get("enemy_id"), "item": item, "egg": egg_id})
+	print("DROP: %s (lvl %d) → %s + egg '%s'" % [
+		enemy.get("enemy_id"), enemy.get("level"),
+		item.get("name", "?"), egg_id if egg_id != "" else "(none)"])
 
 
 func _process(_delta: float) -> void:

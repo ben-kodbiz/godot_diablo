@@ -35,6 +35,10 @@ implementing any system; do not invent architecture that contradicts it.
   (capacity, move/swap, sort/filter, stacks, save round-trip).
   Loadout check: `<godot> --headless --path . --script res://tests/integration/loadout_check.gd`
   (pickup → equip → stats → signal, refusals).
+  Combat check: `<godot> --headless --path . --script res://tests/combat/combat_check.gd`
+  (formula, crit, armor curve, determinism).
+  Combat flow: `<godot> --headless --path . --script res://tests/integration/combat_flow_check.gd`
+  (attack → kill → XP + drop through Main).
   Balance scheme lives in `docs/BALANCING.md`, schema in `docs/DATA_SCHEMA.md`, not in code.
 
 ## Build order (do not skip ahead)

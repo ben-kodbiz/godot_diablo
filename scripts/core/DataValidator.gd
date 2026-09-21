@@ -84,6 +84,7 @@ func validate_all(features: Dictionary = {}) -> bool:
 	validate_balance_player(bal_player, stats)
 	validate_balance_skills(bal_skills, bal_player)
 	validate_balance_inventory(_data.get_table("inventory_balance"))
+	validate_balance_combat(_data.get_table("combat_balance"))
 	if not features.is_empty():
 		validate_features(features)
 	return _errors.is_empty()
@@ -378,6 +379,13 @@ func validate_enemies(table: Dictionary, loot_tables: Dictionary) -> bool:
 			var pd := phase as Dictionary
 			if not _is_num(pd.get("health_threshold", -1)) or float(pd.get("health_threshold", -1)) < 0.0 or float(pd.get("health_threshold", -1)) > 100.0:
 				_err("enemies", str(key), "phases", "health_threshold must be within 0..100.")
+		if e.has("tint"):
+			var tint: Array = e.get("tint", [])
+			if tint.size() != 3:
+				_err("enemies", str(key), "tint", "Must be [r, g, b].")
+			for c in tint:
+				if not _is_num(c) or float(c) < 0.0 or float(c) > 1.0:
+					_err("enemies", str(key), "tint", "Channels must be within 0..1.")
 	return _errors.size() == before
 
 
@@ -536,6 +544,30 @@ func validate_balance_inventory(table: Dictionary) -> bool:
 	var stacking: Dictionary = table.get("stacking", {})
 	if not _is_int_like(stacking.get("max_stack", 0)) or int(stacking.get("max_stack", 0)) < 1:
 		_err("inventory_balance", "stacking", "max_stack", "Must be an integer >= 1.")
+	return _errors.size() == before
+
+
+func validate_balance_combat(table: Dictionary) -> bool:
+	var before := _errors.size()
+	var crit: Dictionary = table.get("crit", {})
+	if not _is_num(crit.get("base_mult", 0)) or float(crit.get("base_mult", 0)) < 1.0:
+		_err("combat_balance", "crit", "base_mult", "Must be >= 1.0.")
+	var armor: Dictionary = table.get("armor", {})
+	if not _is_num(armor.get("constant", 0)) or float(armor.get("constant", 0)) <= 0.0:
+		_err("combat_balance", "armor", "constant", "Must be > 0.")
+	var variance: Dictionary = table.get("variance", {})
+	if not _is_num(variance.get("range", -1)) or float(variance.get("range", -1)) < 0.0 or float(variance.get("range", -1)) > 1.0:
+		_err("combat_balance", "variance", "range", "Must be within 0..1.")
+	var limits: Dictionary = table.get("limits", {})
+	if not _is_int_like(limits.get("min_damage", 0)) or int(limits.get("min_damage", 0)) < 1:
+		_err("combat_balance", "limits", "min_damage", "Must be an integer >= 1.")
+	for section in ["player_basic", "enemy_scaling", "enemy_ai"]:
+		var sd: Dictionary = table.get(section, {})
+		if sd.is_empty():
+			_err("combat_balance", "(root)", section, "Section missing.")
+		for field in sd.keys():
+			if not _is_num(sd[field]) or float(sd[field]) < 0.0:
+				_err("combat_balance", section, str(field), "Must be a number >= 0.")
 	return _errors.size() == before
 
 

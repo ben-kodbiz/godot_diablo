@@ -1,0 +1,24 @@
+{
+  "_schema_version": 1,
+  "crit": { "base_mult": 2.0 },
+  "armor": { "constant": 100.0 },
+  "variance": { "range": 0.1 },
+  "limits": { "min_damage": 1 },
+  "player_basic": {
+    "base_damage": 10.0,
+    "str_mult": 2.0,
+    "range_px": 48.0,
+    "cooldown_sec": 0.5
+  },
+  "enemy_scaling": {
+    "hp_per_level": 0.15,
+    "dmg_per_level": 0.08,
+    "xp_per_level": 0.1
+  },
+  "enemy_ai": {
+    "move_speed": 60.0,
+    "aggro_range": 300.0,
+    "hit_range": 30.0,
+    "contact_cooldown": 1.0
+  }
+}

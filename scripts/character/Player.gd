@@ -7,11 +7,14 @@ extends CharacterBody2D
 
 const InventoryManager = preload("res://scripts/inventory/InventoryManager.gd")
 const EquipmentManager = preload("res://scripts/equipment/EquipmentManager.gd")
+const DamageCalculator = preload("res://scripts/combat/DamageCalculator.gd")
 
 var stats: Node
 var inventory: RefCounted
 var equipment: RefCounted
 var _move_base := 200.0
+var _facing := Vector2.RIGHT
+var _attack_cd := 0.0
 
 
 func _ready() -> void:
@@ -31,8 +34,56 @@ func _ready() -> void:
 func _physics_process(_delta: float) -> void:
 	# InputMap actions only — no hard-coded keys (spec #65).
 	var dir := Input.get_vector("move_left", "move_right", "move_up", "move_down")
+	if dir != Vector2.ZERO:
+		_facing = dir.normalized()
+	_attack_cd = maxf(_attack_cd - _delta, 0.0)
 	velocity = dir * current_speed()
 	move_and_slide()
+	if Input.is_action_just_pressed("attack"):
+		try_attack()
+
+
+func set_facing(dir: Vector2) -> void:
+	if dir != Vector2.ZERO:
+		_facing = dir.normalized()
+
+
+## Basic melee swing: hits enemies (layer 2) within range in facing arc.
+## Returns per-enemy DamageResults ({} when on cooldown). Skill/weapon
+## execution integration arrives later; this is the basic attack only.
+func try_attack() -> Array:
+	var dm := get_node_or_null("/root/DataManager")
+	if dm == null or stats == null:
+		return []
+	var bal: Dictionary = dm.get_table("combat_balance")
+	var basic: Dictionary = bal.get("player_basic", {})
+	if _attack_cd > 0.0:
+		return []
+	_attack_cd = float(basic.get("cooldown_sec", 0.5))
+	var shape := CircleShape2D.new()
+	shape.radius = float(basic.get("range_px", 48.0))
+	var params := PhysicsShapeQueryParameters2D.new()
+	params.shape = shape
+	params.collision_mask = 2
+	params.exclude = [get_rid()]
+	params.transform = Transform2D(0.0, global_position + _facing * shape.radius * 0.5)
+	var hits: Array = get_world_2d().direct_space_state.intersect_shape(params)
+	var rng := get_node_or_null("/root/RNGManager")
+	var base: float = float(basic.get("base_damage", 10.0)) + stats.get_stat("str") * float(basic.get("str_mult", 2.0))
+	var out: Array = []
+	for hit in hits:
+		var collider: Variant = (hit as Dictionary).get("collider")
+		if collider is Node and (collider as Node).is_in_group("enemies") and (collider as Node).has_method("take_hit"):
+			var req := {
+				"base_damage": base, "damage_type": "physical",
+				"crit_chance_pct": stats.get_stat("critical_chance"),
+				"crit_damage_pct": stats.get_stat("critical_damage"),
+				"crit_roll": rng.random_float(0.0, 1.0) if rng != null else 1.0,
+				"variance_roll": rng.random_float(0.0, 1.0) if rng != null else 0.5,
+				"source": "player",
+			}
+			out.append((collider as Node).call("take_hit", req))
+	return out
 
 
 func current_speed() -> float:
