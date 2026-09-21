@@ -1,0 +1,142 @@
+{
+  "staff_magic_bolt": {
+    "id": "staff_magic_bolt", "name": "Magic Bolt", "family": "staff",
+    "description": "A basic bolt of arcane energy.",
+    "unlock_level": 1, "max_rank": 5,
+    "base": { "damage_flat": 12, "damage_pct": 0, "cooldown_sec": 1.0, "mana_cost": 5 },
+    "per_rank": { "damage_flat": 6, "damage_pct": 5 }
+  },
+  "staff_arcane_blast": {
+    "id": "staff_arcane_blast", "name": "Arcane Blast", "family": "staff",
+    "description": "A heavy blast that splashes nearby enemies.",
+    "unlock_level": 4, "max_rank": 5,
+    "base": { "damage_flat": 25, "damage_pct": 10, "cooldown_sec": 4.0, "mana_cost": 12 },
+    "per_rank": { "damage_flat": 12, "damage_pct": 8 }
+  },
+  "staff_frost_nova": {
+    "id": "staff_frost_nova", "name": "Frost Nova", "family": "staff",
+    "description": "Freezing ring around the caster.",
+    "unlock_level": 7, "max_rank": 5,
+    "base": { "damage_flat": 30, "damage_pct": 15, "cooldown_sec": 8.0, "mana_cost": 18 },
+    "per_rank": { "damage_flat": 15, "damage_pct": 10 }
+  },
+  "staff_chain_lightning": {
+    "id": "staff_chain_lightning", "name": "Chain Lightning", "family": "staff",
+    "description": "Lightning that jumps between enemies.",
+    "unlock_level": 10, "max_rank": 5,
+    "base": { "damage_flat": 40, "damage_pct": 20, "cooldown_sec": 10.0, "mana_cost": 25 },
+    "per_rank": { "damage_flat": 20, "damage_pct": 12 }
+  },
+  "staff_meteor": {
+    "id": "staff_meteor", "name": "Meteor", "family": "staff",
+    "description": "Call down a devastating meteor.",
+    "unlock_level": 13, "max_rank": 5,
+    "base": { "damage_flat": 60, "damage_pct": 30, "cooldown_sec": 16.0, "mana_cost": 40 },
+    "per_rank": { "damage_flat": 30, "damage_pct": 15 }
+  },
+  "bow_quick_shot": {
+    "id": "bow_quick_shot", "name": "Quick Shot", "family": "bow",
+    "description": "A fast, light arrow.",
+    "unlock_level": 1, "max_rank": 5,
+    "base": { "damage_flat": 10, "damage_pct": 0, "cooldown_sec": 0.8, "mana_cost": 0 },
+    "per_rank": { "damage_flat": 5, "damage_pct": 6 }
+  },
+  "bow_piercing_arrow": {
+    "id": "bow_piercing_arrow", "name": "Piercing Arrow", "family": "bow",
+    "description": "An arrow that passes through enemies.",
+    "unlock_level": 4, "max_rank": 5,
+    "base": { "damage_flat": 22, "damage_pct": 10, "cooldown_sec": 3.0, "mana_cost": 0 },
+    "per_rank": { "damage_flat": 11, "damage_pct": 8 }
+  },
+  "bow_multi_shot": {
+    "id": "bow_multi_shot", "name": "Multi Shot", "family": "bow",
+    "description": "A fan of three arrows.",
+    "unlock_level": 7, "max_rank": 5,
+    "base": { "damage_flat": 28, "damage_pct": 15, "cooldown_sec": 6.0, "mana_cost": 0 },
+    "per_rank": { "damage_flat": 14, "damage_pct": 10 }
+  },
+  "bow_volley": {
+    "id": "bow_volley", "name": "Volley", "family": "bow",
+    "description": "Rain arrows over an area.",
+    "unlock_level": 10, "max_rank": 5,
+    "base": { "damage_flat": 38, "damage_pct": 20, "cooldown_sec": 10.0, "mana_cost": 0 },
+    "per_rank": { "damage_flat": 19, "damage_pct": 12 }
+  },
+  "bow_snipe": {
+    "id": "bow_snipe", "name": "Snipe", "family": "bow",
+    "description": "A long-aimed, massive single shot.",
+    "unlock_level": 13, "max_rank": 5,
+    "base": { "damage_flat": 55, "damage_pct": 35, "cooldown_sec": 14.0, "mana_cost": 0 },
+    "per_rank": { "damage_flat": 28, "damage_pct": 15 }
+  },
+  "sword_heavy_strike": {
+    "id": "sword_heavy_strike", "name": "Heavy Strike", "family": "sword",
+    "description": "A slow, crushing blow.",
+    "unlock_level": 1, "max_rank": 5,
+    "base": { "damage_flat": 14, "damage_pct": 0, "cooldown_sec": 1.2, "mana_cost": 0 },
+    "per_rank": { "damage_flat": 7, "damage_pct": 5 }
+  },
+  "sword_cleave": {
+    "id": "sword_cleave", "name": "Cleave", "family": "sword",
+    "description": "Sweep that hits all adjacent enemies.",
+    "unlock_level": 4, "max_rank": 5,
+    "base": { "damage_flat": 24, "damage_pct": 10, "cooldown_sec": 4.0, "mana_cost": 0 },
+    "per_rank": { "damage_flat": 12, "damage_pct": 8 }
+  },
+  "sword_whirlwind": {
+    "id": "sword_whirlwind", "name": "Whirlwind", "family": "sword",
+    "description": "Spin attack around the caster.",
+    "unlock_level": 7, "max_rank": 5,
+    "base": { "damage_flat": 32, "damage_pct": 15, "cooldown_sec": 8.0, "mana_cost": 0 },
+    "per_rank": { "damage_flat": 16, "damage_pct": 10 }
+  },
+  "sword_execute": {
+    "id": "sword_execute", "name": "Execute", "family": "sword",
+    "description": "Bonus damage against wounded enemies.",
+    "unlock_level": 10, "max_rank": 5,
+    "base": { "damage_flat": 42, "damage_pct": 25, "cooldown_sec": 10.0, "mana_cost": 0 },
+    "per_rank": { "damage_flat": 21, "damage_pct": 12 }
+  },
+  "sword_blade_storm": {
+    "id": "sword_blade_storm", "name": "Blade Storm", "family": "sword",
+    "description": "A storm of whirling blades.",
+    "unlock_level": 13, "max_rank": 5,
+    "base": { "damage_flat": 58, "damage_pct": 30, "cooldown_sec": 16.0, "mana_cost": 0 },
+    "per_rank": { "damage_flat": 29, "damage_pct": 15 }
+  },
+  "shield_bash": {
+    "id": "shield_bash", "name": "Shield Bash", "family": "shield",
+    "description": "Slam with the shield.",
+    "unlock_level": 1, "max_rank": 5,
+    "base": { "damage_flat": 8, "damage_pct": 0, "cooldown_sec": 2.0, "mana_cost": 0 },
+    "per_rank": { "damage_flat": 4, "damage_pct": 5 }
+  },
+  "shield_guard_stance": {
+    "id": "shield_guard_stance", "name": "Guard Stance", "family": "shield",
+    "description": "Raise defenses for a short time.",
+    "unlock_level": 4, "max_rank": 5,
+    "base": { "damage_flat": 0, "damage_pct": 0, "cooldown_sec": 12.0, "mana_cost": 0 },
+    "per_rank": { "damage_flat": 0, "damage_pct": 0 }
+  },
+  "shield_counter": {
+    "id": "shield_counter", "name": "Counter", "family": "shield",
+    "description": "Retaliate after blocking.",
+    "unlock_level": 7, "max_rank": 5,
+    "base": { "damage_flat": 20, "damage_pct": 15, "cooldown_sec": 6.0, "mana_cost": 0 },
+    "per_rank": { "damage_flat": 10, "damage_pct": 10 }
+  },
+  "shield_wall": {
+    "id": "shield_wall", "name": "Shield Wall", "family": "shield",
+    "description": "Become nearly immovable.",
+    "unlock_level": 10, "max_rank": 5,
+    "base": { "damage_flat": 0, "damage_pct": 0, "cooldown_sec": 20.0, "mana_cost": 0 },
+    "per_rank": { "damage_flat": 0, "damage_pct": 0 }
+  },
+  "shield_bulwark": {
+    "id": "shield_bulwark", "name": "Bulwark", "family": "shield",
+    "description": "A shockwave of pure defense turned to damage.",
+    "unlock_level": 13, "max_rank": 5,
+    "base": { "damage_flat": 35, "damage_pct": 20, "cooldown_sec": 14.0, "mana_cost": 0 },
+    "per_rank": { "damage_flat": 18, "damage_pct": 12 }
+  }
+}

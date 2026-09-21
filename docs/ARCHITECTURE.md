@@ -46,6 +46,31 @@ This file tracks what is actually built; update it whenever structure changes.
   --tier/--map-level/--kills`, `--check`) + dev-only
   `scripts/ui/PetSimulatorPanel.gd` (hatch + 100-kill drop test).
 
+## Built (Stage 2 player)
+
+- `scenes/player/Player.tscn` (CharacterBody2D + placeholder sprite, collision,
+  smoothing Camera2D, `CharacterStats` node) driven by `scripts/character/Player.gd`
+  — movement only, via `Input.get_vector(...)`. Instanced in Main.
+- `scripts/character/CharacterStats.gd`: level/XP (curve from
+  `data/balance/player.json`), HP/mana, `set_contributors(source, mods)` hook
+  for equipment/talents/pets/buffs, emits `player_level_up` through EventBus.
+- `scripts/character/StatCalculator.gd`: pure static
+  `(base + growth + flats) × (1 + percents)` + `xp_for_level`.
+- Check: `tests/player/player_check.gd` (calculator math, live movement,
+  level-up/signal, HP rules, contributor hook).
+
+## Built (skills)
+
+- `scripts/skills/SkillManager.gd` (`_init(data)`): point economy
+  (1 per 3 levels, L1 starts with 1), unlock/upgrade with point + level +
+  family + max-rank guards, `skill_power(id)` combat numbers, `family_view`
+  for UI, `reset()` for respec. `_ranks` is plain save data.
+- Content: 20 skills (5 per bow/staff/sword/shield family, unlocks 1/4/7/10/13),
+  `data/balance/skills.json` (cadence, 10-per-weapon / rank-5 / level-20 caps).
+- Tool: `tests/skills/skill_check.gd` (`--weapon/--level` tree view, `--check`
+  data + economy + math + cap validation). No in-game panel yet — skill UI
+  lands with the talent/UI stage.
+
 ## Dependency rules (enforced)
 
 Systems → managers/services → data. UI never feeds generators
@@ -54,7 +79,7 @@ Systems → managers/services → data. UI never feeds generators
 `LootGenerator/PetGenerator/MapGenerator/SaveManager` internals. Stats aggregate
 in one place (`StatCalculator`, Stage 2); no ad-hoc patching.
 
-## Next (Stage 2)
+## Next (Stage 3 equipment)
 
-Player scene + movement + camera + HP/XP/levels + base stats + `StatCalculator`
-+ input-driven controls. Then equipment/inventory/loot per `todoagent.md` §121.
+EquipmentManager, 7 slots, equip/unequip, two-handed rule, equipment stat
+modifiers feeding `StatCalculator`. Then inventory/combat per `todoagent.md` §121.

@@ -1,0 +1,8 @@
+{
+  "base_stats": { "str": 10, "dex": 10, "int": 10, "vit": 10, "luck": 5 },
+  "per_level": { "str": 2, "dex": 2, "int": 2, "vit": 3, "luck": 1 },
+  "health": { "base_hp": 50, "hp_per_vit": 5, "hp_per_level": 10 },
+  "mana": { "base_mana": 20, "mana_per_int": 3 },
+  "move_speed": { "base_px_per_sec": 200 },
+  "xp_curve": { "base": 100, "growth": 1.5, "max_level": 20 }
+}

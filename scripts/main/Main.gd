@@ -50,6 +50,12 @@ func _refresh_status(dir: Vector2 = Vector2.ZERO) -> void:
 	var weapons: Dictionary = DataManager.get_table("weapons")
 	var names: Array = weapons.keys()
 	names.sort()
-	_info.text = "DataManager errors: %d · weapons: %s\nInput vector: %s" % [
-		DataManager.get_errors().size(), ", ".join(names), dir
+	var player_text := "player: missing"
+	if has_node("Player"):
+		var p := get_node("Player")
+		player_text = "player: lvl %d · hp %d/%d · pos %s" % [
+			p.stats.level, p.stats.current_hp, p.stats.max_hp(), Vector2i(p.position)
+		]
+	_info.text = "DataManager errors: %d · weapons: %s\n%s\nInput vector: %s" % [
+		DataManager.get_errors().size(), ", ".join(names), player_text, dir
 	]

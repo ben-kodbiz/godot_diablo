@@ -21,6 +21,10 @@ implementing any system; do not invent architecture that contradicts it.
   (rolls: `--rarity=epic --base=iron_sword --level=20 --count=5 --seed=3`).
   Pet check: `<godot> --headless --path . --script res://tests/pets/pet_simulator.gd -- --check`
   (hatch: `--egg=sky_egg --count=5`; drops: `--drops --tier=elite --map-level=15 --kills=1000`).
+  Player check: `<godot> --headless --path . --script res://tests/player/player_check.gd`
+  (movement, XP/level + signal, HP, StatCalculator math).
+  Skill check: `<godot> --headless --path . --script res://tests/skills/skill_check.gd -- --check`
+  (tree: `--weapon=staff --level=10`; economy, upgrade math, level-20 cap).
   Balance scheme lives in `docs/BALANCING.md`, not in code.
 
 ## Build order (do not skip ahead)

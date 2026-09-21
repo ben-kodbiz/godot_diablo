@@ -18,6 +18,8 @@ inventory UI, or real egg timers yet** — those are later stages (§121 order i
 | ------ | ----- | ------ |
 | Project bootstrap | `project.godot`, `scenes/main/Main.tscn` | Run → placeholder world + 2 dev panels |
 | Data engine | `scripts/core/` (EventBus, RNG, Features, Data, Game) | `BOOT OK …` in output, `DATA ERROR` on bad JSON |
+| Player | `scenes/player/`, `scripts/character/` (Player, CharacterStats, StatCalculator) | Run → move with WASD, status shows lvl/HP; `tests/player/player_check.gd` |
+| Skills | `scripts/skills/` (SkillManager) + `data/skills/`, `data/balance/skills.json` | `tests/skills/skill_check.gd -- --weapon=staff --level=10`, `--check` |
 | Loot generator | `scripts/loot/`, `data/equipment|affixes|rarities|effects|balance/loot.json` | Loot panel / loot simulator |
 | Pets + eggs + drops | `scripts/pets/`, `data/pets|eggs|drops|enemies|maps`, `data/balance/pets.json` | Pet panel / pet simulator |
 
@@ -130,6 +132,28 @@ $GODOT --headless --path . --script res://tests/loot/loot_simulator.gd -- \
 $GODOT --headless --path . --script res://tests/loot/loot_simulator.gd -- --check
 ```
 
+### Player check
+
+```sh
+# StatCalculator math + live movement + XP/level/signal + HP rules.
+# Must print PLAYER CHECK: PASS.
+$GODOT --headless --path . --script res://tests/player/player_check.gd
+```
+
+### Skill tool
+
+```sh
+# Show a weapon's tree at a level (demo-spends points in unlock order)
+/godot-binary --headless --path . --script res://tests/skills/skill_check.gd -- \
+  --weapon=bow --level=13
+# Validate: data rules, point economy, upgrade guards, power math, level-20 cap
+/godot-binary --headless --path . --script res://tests/skills/skill_check.gd -- --check
+```
+
+**Scheme:** 1 skill point per 3 player levels (7 by L20) · unlock = 1pt ·
++1 rank = 1pt up to rank 5 · max 10 skills per weapon · player cap L20.
+Details in `docs/BALANCING.md`.
+
 In-game: the **Loot Simulator** panel → pick Base + Rarity + Level → **Roll item**.
 Rarity-colored names, full tooltip, same generator.
 
@@ -186,6 +210,8 @@ eggs 2–48h; drops only from kills, gated by map level. Details + roster table 
 | **Add a fixed signature pet** | Append to `data/pets/pets.json` (`id, name, rarity, egg_type, bonuses[]`) and reference it from an egg's `possible_pets`. Reserve this for special pets (dragons!) — bulk roster should be wild. |
 | **Add an egg** | Append to `data/eggs/eggs.json`: `id, name, hatch_time_hours, min_map_level, possible_pets[] and/or wild_rolls[]`. Add it to a tier pool in `data/drops/enemy_drops.json`. |
 | **Retune drops/pets** | `data/drops/enemy_drops.json` (tier chances + pools), `data/balance/pets.json` (lines + multipliers per rarity). Re-run pet `--check`: gating, rates, dragon share. |
+| **Add a skill** | Append to `data/skills/skills.json`: `id, name, family, unlock_level (1–20), max_rank, base{damage_flat/damage_pct/cooldown_sec/mana_cost}, per_rank{…}`. Keep ≤10 per family, unlocks ascending. Re-run skill `--check`. |
+| **Tune player** | `data/balance/player.json` (base/growth stats, HP/mana rules, move speed, XP curve). Re-run player check. |
 | **Add an enemy / map** | `data/enemies/enemies.json` needs `id, tier (normal/elite/boss), health, damage` (+ flavor: name, level, armor, xp, loot_table). `data/maps/maps.json` needs `id, biome` + `enemies[]`, `elites[]`, `boss` ("" = none). Enemy/map *behavior* (AI, generation) arrives in later stages — data first. |
 | **Disable an unfinished system** | `data/config/features.json` (`crafting/quests: false`). Code gates on `FeatureManager.is_enabled(…)`. |
 
@@ -221,7 +247,7 @@ eggs 2–48h; drops only from kills, gated by map level. Details + roster table 
 
 ## 10. What's next (don't skip ahead)
 
-`todoagent.md` §121 order: player+stats → equipment → inventory → loot polish →
+`todoagent.md` §121 order: player ✅ → equipment → inventory → loot polish →
 combat → talents → pets/eggs timers → procedural maps → bosses → save → UI →
 balancing → art/audio → web optimization → browser release → Steam prep.
 MVP = 1 biome, 3 maps, 1 boss, bow/staff/sword/shield, 5 loot rarities, pet

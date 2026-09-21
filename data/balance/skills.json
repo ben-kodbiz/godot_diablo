@@ -1,0 +1,4 @@
+{
+  "economy": { "unlock_every_levels": 3, "points_per_unlock": 1 },
+  "caps": { "max_skills_per_weapon": 10, "max_skill_rank": 5, "max_player_level": 20 }
+}

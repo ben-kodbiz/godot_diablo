@@ -18,8 +18,11 @@ const PATHS := {
 	"effects": "res://data/effects/buffs.json",
 	"balance": "res://data/balance/loot.json",
 	"pet_balance": "res://data/balance/pets.json",
+	"player_balance": "res://data/balance/player.json",
+	"skill_balance": "res://data/balance/skills.json",
 	"pets": "res://data/pets/pets.json",
 	"species": "res://data/pets/species.json",
+	"skills": "res://data/skills/skills.json",
 	"eggs": "res://data/eggs/eggs.json",
 	"enemies": "res://data/enemies/enemies.json",
 	"maps": "res://data/maps/maps.json",
@@ -36,8 +39,11 @@ const REQUIRED := {
 	"effects": ["id", "name", "modifiers"],
 	"balance": [],
 	"pet_balance": [],
+	"player_balance": [],
+	"skill_balance": [],
 	"pets": ["id", "rarity", "bonuses"],
 	"species": ["id", "name", "wild_pool", "rarity_weights"],
+	"skills": ["id", "name", "family", "unlock_level"],
 	"eggs": ["id", "hatch_time_hours"],
 	"enemies": ["id", "tier", "health", "damage"],
 	"maps": ["id", "biome"],
@@ -98,6 +104,10 @@ func get_pet(id: String) -> Dictionary:
 
 func get_species(id: String) -> Dictionary:
 	return _get_entry("species", id)
+
+
+func get_skill(id: String) -> Dictionary:
+	return _get_entry("skills", id)
 
 
 func get_egg(id: String) -> Dictionary:

@@ -3,6 +3,23 @@
 All numbers live in `data/` JSON — never in `.gd`. Retune by editing files,
 then re-run the headless check (§Validation).
 
+## Player (`data/balance/player.json`)
+
+Base 10 STR/DEX/INT/VIT + 5 LUCK; per level +2/+2/+2/+3/+1. HP =
+50 + VIT×5 + (level−1)×10 (L1 = 100). Mana = 20 + INT×3. Move 200 px/s
+(×1 + move_speed% from pets/buffs). XP for level N→N+1 = 100 × 1.5^(N−1)
+(L1→2 = 100, L2→3 = 150). Level-up refills HP and emits `player_level_up`.
+Max player level 20 (in `xp_curve`).
+
+## Skills (`data/skills/skills.json` + `data/balance/skills.json`)
+
+One skill point every 3 player levels (L1, 4, 7, … 19 → 7 points at L20).
+Unlock = 1 point (rank 1); each +1 rank = 1 point, max rank 5. Max 10 skills
+per weapon family (5 authored per family today). Power at rank R:
+flat = base_flat + per_flat×(R−1), pct likewise; cooldown/mana fixed.
+Families unlock at 1/4/7/10/13 (starter → … → Meteor-tier). Skill execution
+(cooldowns, targeting) is combat-stage work; numbers are final here.
+
 ## Rarity scheme (`data/rarities/rarities.json`)
 
 | Rarity | Color | Weight | Affixes | Bonus buff |

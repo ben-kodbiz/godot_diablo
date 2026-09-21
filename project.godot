@@ -91,8 +91,8 @@ toggle_pets={
 
 [rendering]
 
+textures/canvas_textures/default_texture_filter=0
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
-textures/canvas_textures/default_texture_filter=0
 textures/default_filters/use_nearest_mipmap_filter=true
 environment/defaults/default_clear_color=Color(0.05, 0.05, 0.08, 1)
