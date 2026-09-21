@@ -1,0 +1,36 @@
+{
+  "forest_slime": {
+    "id": "forest_slime", "name": "Forest Slime", "tier": "normal",
+    "base_level": 1, "health": 30, "damage": 5, "armor": 0, "xp": 8,
+    "loot_table": "forest_common"
+  },
+  "forest_goblin": {
+    "id": "forest_goblin", "name": "Forest Goblin", "tier": "normal",
+    "base_level": 2, "health": 50, "damage": 8, "armor": 2, "xp": 10,
+    "loot_table": "forest_common"
+  },
+  "dire_wolf": {
+    "id": "dire_wolf", "name": "Dire Wolf", "tier": "normal",
+    "base_level": 8, "health": 80, "damage": 12, "armor": 3, "xp": 16,
+    "loot_table": "forest_common"
+  },
+  "goblin_brute": {
+    "id": "goblin_brute", "name": "Goblin Brute", "tier": "elite",
+    "base_level": 5, "health": 220, "damage": 18, "armor": 6, "xp": 45,
+    "loot_table": "forest_elite"
+  },
+  "troll_shaman": {
+    "id": "troll_shaman", "name": "Troll Shaman", "tier": "elite",
+    "base_level": 12, "health": 300, "damage": 24, "armor": 4, "xp": 70,
+    "loot_table": "forest_elite"
+  },
+  "forest_guardian": {
+    "id": "forest_guardian", "name": "Forest Guardian", "tier": "boss",
+    "base_level": 18, "health": 1500, "damage": 40, "armor": 10, "xp": 300,
+    "loot_table": "forest_boss", "level_scaling": true,
+    "phases": [
+      { "health_threshold": 100, "behavior": "normal" },
+      { "health_threshold": 50, "behavior": "enraged" }
+    ]
+  }
+}

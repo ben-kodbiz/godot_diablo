@@ -1,0 +1,30 @@
+{
+  "iron_bow": {
+    "id": "iron_bow", "name": "Iron Bow", "base_type": "bow", "slot": "main_hand",
+    "required_level": 5, "base_stats": { "dex": 8 }
+  },
+  "apprentice_staff": {
+    "id": "apprentice_staff", "name": "Apprentice Staff", "base_type": "staff", "slot": "main_hand",
+    "required_level": 5, "base_stats": { "int": 8 }
+  },
+  "iron_sword": {
+    "id": "iron_sword", "name": "Iron Sword", "base_type": "sword", "slot": "main_hand",
+    "required_level": 5, "base_stats": { "str": 8 }
+  },
+  "wooden_shield": {
+    "id": "wooden_shield", "name": "Wooden Shield", "base_type": "shield", "slot": "off_hand",
+    "required_level": 5, "base_stats": { "vit": 6, "armor": 4 }
+  },
+  "cloth_armor": {
+    "id": "cloth_armor", "name": "Cloth Armor", "base_type": "armor", "slot": "armor",
+    "required_level": 1, "base_stats": { "armor": 3 }
+  },
+  "iron_helmet": {
+    "id": "iron_helmet", "name": "Iron Helmet", "base_type": "helmet", "slot": "helmet",
+    "required_level": 3, "base_stats": { "armor": 2, "vit": 2 }
+  },
+  "lucky_charm": {
+    "id": "lucky_charm", "name": "Lucky Charm", "base_type": "accessory", "slot": "accessory",
+    "required_level": 1, "base_stats": { "luck": 3 }
+  }
+}

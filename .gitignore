@@ -1,0 +1,16 @@
+# Godot
+.godot/
+export/
+*.translation
+.editor/
+
+# Web export output
+build/web/
+
+# OS / editor noise
+.DS_Store
+Thumbs.db
+*~
+
+# Vendored engine binary is large; keep it local, do not commit.
+Godot_v4.7.2-stable_mono_linux_x86_64/

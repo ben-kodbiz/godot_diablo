@@ -1,0 +1,8 @@
+{
+  "pets": true,
+  "crafting": false,
+  "quests": false,
+  "bosses": true,
+  "legendary_items": true,
+  "procedural_maps": true
+}

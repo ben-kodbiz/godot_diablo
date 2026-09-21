@@ -1,0 +1,7 @@
+{
+  "normal": { "weight": 6000, "min_affixes": 0, "max_affixes": 1, "bonus_buffs": 0 },
+  "uncommon": { "weight": 2500, "min_affixes": 1, "max_affixes": 1, "bonus_buffs": 0 },
+  "rare": { "weight": 1000, "min_affixes": 2, "max_affixes": 2, "bonus_buffs": 0 },
+  "epic": { "weight": 450, "min_affixes": 3, "max_affixes": 3, "bonus_buffs": 1 },
+  "legendary": { "weight": 50, "min_affixes": 4, "max_affixes": 5, "bonus_buffs": 1 }
+}

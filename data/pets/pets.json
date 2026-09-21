@@ -1,0 +1,47 @@
+{
+  "green_slime": {
+    "id": "green_slime", "name": "Green Slime", "rarity": "common", "egg_type": "forest_egg",
+    "bonuses": [
+      { "stat": "vit", "value": 3, "is_percent": false },
+      { "stat": "health", "value": 20, "is_percent": false }
+    ]
+  },
+  "forest_wolf": {
+    "id": "forest_wolf", "name": "Forest Wolf", "rarity": "common", "egg_type": "forest_egg",
+    "bonuses": [
+      { "stat": "dex", "value": 5, "is_percent": false },
+      { "stat": "attack_speed", "value": 2, "is_percent": true }
+    ]
+  },
+  "mage_cat": {
+    "id": "mage_cat", "name": "Mage Cat", "rarity": "rare", "egg_type": "mossy_egg",
+    "bonuses": [
+      { "stat": "int", "value": 8, "is_percent": false },
+      { "stat": "mana", "value": 10, "is_percent": true }
+    ]
+  },
+  "stone_turtle": {
+    "id": "stone_turtle", "name": "Stone Turtle", "rarity": "rare", "egg_type": "mossy_egg",
+    "bonuses": [
+      { "stat": "vit", "value": 10, "is_percent": false },
+      { "stat": "health", "value": 5, "is_percent": true }
+    ]
+  },
+  "sky_unicorn": {
+    "id": "sky_unicorn", "name": "Sky Unicorn", "rarity": "epic", "egg_type": "sky_egg",
+    "bonuses": [
+      { "stat": "move_speed", "value": 8, "is_percent": true },
+      { "stat": "luck", "value": 10, "is_percent": false },
+      { "stat": "critical_chance", "value": 2, "is_percent": true }
+    ]
+  },
+  "ember_dragon": {
+    "id": "ember_dragon", "name": "Ember Dragon", "rarity": "legendary", "egg_type": "dragon_egg",
+    "bonuses": [
+      { "stat": "str", "value": 15, "is_percent": false },
+      { "stat": "damage", "value": 12, "is_percent": true },
+      { "stat": "health", "value": 120, "is_percent": false },
+      { "stat": "critical_damage", "value": 10, "is_percent": true }
+    ]
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "rarity_scaling": {
+    "common": { "bonus_lines": 1, "value_mult": 1.0 },
+    "rare": { "bonus_lines": 2, "value_mult": 1.6 },
+    "epic": { "bonus_lines": 3, "value_mult": 2.2 },
+    "legendary": { "bonus_lines": 4, "value_mult": 3.2 }
+  }
+}

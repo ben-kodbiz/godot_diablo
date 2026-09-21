@@ -1,0 +1,7 @@
+{
+  "str": { "id": "str", "name": "Strength", "effects": ["physical_damage", "maximum_health", "melee_damage"] },
+  "dex": { "id": "dex", "name": "Dexterity", "effects": ["ranged_damage", "attack_speed", "critical_chance", "evasion"] },
+  "int": { "id": "int", "name": "Intelligence", "effects": ["magic_damage", "mana", "skill_power"] },
+  "vit": { "id": "vit", "name": "Vitality", "effects": ["maximum_health", "armor", "health_regeneration"] },
+  "luck": { "id": "luck", "name": "Luck", "effects": ["loot_quantity", "rare_drop_chance", "pet_drop_chance"] }
+}
